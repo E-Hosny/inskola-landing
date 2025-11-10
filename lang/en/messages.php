@@ -7,7 +7,7 @@ return [
         'about' => 'About Us',
         'contact' => 'Contact',
         'login' => 'Login',
-        'register' => 'Register',
+        'register' => 'Join Us',
     ],
     'hero' => [
         'title' => 'Your Learning Journey Starts Here',
