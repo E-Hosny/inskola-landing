@@ -218,6 +218,12 @@
             box-shadow: 0 8px 25px rgba(24, 181, 150, 0.35);
         }
 
+        /* Mobile Menu Items - Hidden on Desktop */
+        .mobile-language-switcher,
+        .mobile-register-btn {
+            display: none;
+        }
+
         /* Hamburger Menu */
         .hamburger {
             display: none;
@@ -1034,36 +1040,41 @@
                 order: {{ $isRTL ? '1' : '3' }} !important;
             }
 
+            /* Hide nav-actions on mobile */
             .nav-actions {
-                position: fixed;
-                {{ $isRTL ? 'right' : 'left' }}: -100%;
-                top: auto;
-                bottom: 2rem;
-                width: calc(100% - 4rem);
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
-                padding: 1.5rem;
-                flex-direction: column;
-                box-shadow: var(--shadow-xl);
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                gap: 1.5rem;
-                border-radius: 20px;
-                border: 2px solid rgba(24, 181, 150, 0.2);
-                z-index: 998;
+                display: none !important;
             }
 
-            .nav-actions.active {
-                {{ $isRTL ? 'right' : 'left' }}: 2rem;
+            /* Show mobile menu items */
+            .mobile-language-switcher,
+            .mobile-register-btn {
+                display: block;
+                width: 100%;
+                padding: 0.5rem 0;
             }
 
-            .language-switcher {
+            .mobile-language-switcher {
+                margin-top: 1rem;
+                padding-top: 1.5rem;
+                border-top: 2px solid rgba(24, 181, 150, 0.15);
+            }
+
+            .mobile-language-switcher .language-switcher {
                 width: 100%;
                 justify-content: center;
+                margin: 0;
             }
 
-            .nav-actions .btn-primary {
+            .mobile-register-btn {
+                margin-top: 0.5rem;
+            }
+
+            .mobile-register-btn .mobile-btn {
                 width: 100%;
                 text-align: center;
+                padding: 1.2rem 2rem;
+                font-size: 1.15rem;
+                display: block;
             }
 
             .hero {
@@ -1224,6 +1235,15 @@
                 <li><a href="#subjects">{{ __('messages.nav.subjects') }}</a></li>
                 <li><a href="#about">{{ __('messages.nav.about') }}</a></li>
                 <li><a href="#contact">{{ __('messages.nav.contact') }}</a></li>
+                <li class="mobile-language-switcher">
+                    <div class="language-switcher">
+                        <a href="{{ route('language.switch', 'ar') }}" class="{{ $locale === 'ar' ? 'active' : '' }}">العربية</a>
+                        <a href="{{ route('language.switch', 'en') }}" class="{{ $locale === 'en' ? 'active' : '' }}">English</a>
+                    </div>
+                </li>
+                <li class="mobile-register-btn">
+                    <a href="#contact" class="btn-primary mobile-btn">{{ __('messages.nav.register') }}</a>
+                </li>
             </ul>
 
             <div class="nav-actions" id="navActions">
@@ -1447,7 +1467,10 @@
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
-            navActions.classList.toggle('active');
+            // Only toggle navActions on desktop (it's hidden on mobile via CSS)
+            if (window.innerWidth > 992 && navActions) {
+                navActions.classList.toggle('active');
+            }
         });
 
         // Close menu when clicking on a link
@@ -1455,7 +1478,9 @@
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
-                navActions.classList.remove('active');
+                if (window.innerWidth > 992 && navActions) {
+                    navActions.classList.remove('active');
+                }
             });
         });
 
