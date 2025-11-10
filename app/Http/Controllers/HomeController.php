@@ -4,12 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        // Set locale from session or use default
+        $locale = Session::get('locale', config('app.locale'));
+        App::setLocale($locale);
+        
         return view('home');
+    }
+
+    public function switchLanguage($locale)
+    {
+        if (in_array($locale, ['ar', 'en'])) {
+            Session::put('locale', $locale);
+            App::setLocale($locale);
+        }
+        
+        return redirect()->back();
     }
 
     public function storeContact(Request $request)
@@ -22,7 +38,12 @@ class HomeController extends Controller
 
         Contact::create($validated);
 
-        return redirect()->route('home')->with('success', 'Thank you for your message! We will get back to you soon.');
+        $locale = Session::get('locale', config('app.locale'));
+        $successMessage = $locale === 'ar' 
+            ? 'شكراً لك على رسالتك! سنتواصل معك قريباً.'
+            : 'Thank you for your message! We will get back to you soon.';
+
+        return redirect()->route('home')->with('success', $successMessage);
     }
 }
 
