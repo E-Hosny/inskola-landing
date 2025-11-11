@@ -100,9 +100,9 @@
 
         .logo img {
             height: auto;
-            width: 300px;
-            max-width: 300px;
-            max-height: 45px;
+            width: 350px;
+            max-width: 350px;
+            max-height: 52px;
             object-fit: contain;
             display: block;
             transition: all 0.3s ease;
@@ -1308,8 +1308,8 @@
 
             .logo img {
                 width: auto !important;
-                max-width: 300px;
-                max-height: 50px;
+                max-width: 330px;
+                max-height: 55px;
                 height: auto;
                 display: block;
             }
@@ -1358,14 +1358,14 @@
                 box-shadow: 
                     0 20px 60px rgba(0, 0, 0, 0.3),
                     0 0 0 1px rgba(255, 255, 255, 0.5);
-                padding: 2.5rem 1.5rem;
-                gap: 0.5rem;
+                padding: 1rem 0.75rem;
+                gap: 0.2rem;
                 justify-content: flex-start;
                 z-index: 999;
                 pointer-events: none;
                 display: flex;
                 margin: 0;
-                border-radius: 24px;
+                border-radius: 20px;
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
                 overflow-y: auto;
@@ -1404,7 +1404,7 @@
             }
 
             .nav-menu li {
-                padding: 0.3rem 0;
+                padding: 0.1rem 0;
                 width: 100%;
                 opacity: 0;
                 transform: translateY(-10px);
@@ -1425,10 +1425,10 @@
             .nav-menu.active li:nth-child(7) { transition-delay: 0.4s; }
 
             .nav-menu li a {
-                padding: 1.2rem 2rem;
+                padding: 0.5rem 1rem;
                 width: 100%;
-                font-size: 1.15rem;
-                border-radius: 15px;
+                font-size: 0.85rem;
+                border-radius: 10px;
                 transition: all 0.3s ease;
             }
 
@@ -1445,10 +1445,10 @@
             @media (max-width: 992px) {
                 .mobile-menu-close {
                     position: absolute;
-                    top: 1rem;
-                    {{ $isRTL ? 'left' : 'right' }}: 1rem;
-                    width: 40px;
-                    height: 40px;
+                    top: 0.75rem;
+                    {{ $isRTL ? 'left' : 'right' }}: 0.75rem;
+                    width: 35px;
+                    height: 35px;
                     border-radius: 50%;
                     background: rgba(24, 181, 150, 0.1);
                     border: none;
@@ -1531,30 +1531,38 @@
             .mobile-register-btn {
                 display: block;
                 width: 100%;
-                padding: 0.5rem 0;
+                padding: 0.2rem 0;
             }
 
             .mobile-language-switcher {
-                margin-top: 1rem;
-                padding-top: 1.5rem;
-                border-top: 2px solid rgba(24, 181, 150, 0.15);
+                margin-top: 0.5rem;
+                padding-top: 0.75rem;
+                border-top: 1.5px solid rgba(24, 181, 150, 0.15);
             }
 
             .mobile-language-switcher .language-switcher {
                 width: 100%;
                 justify-content: center;
                 margin: 0;
+                padding: 0.25rem;
+                gap: 0.25rem;
+            }
+
+            .mobile-language-switcher .language-switcher a {
+                padding: 0.35rem 0.75rem;
+                font-size: 0.8rem;
+                font-weight: 600;
             }
 
             .mobile-register-btn {
-                margin-top: 0.5rem;
+                margin-top: 0.4rem;
             }
 
             .mobile-register-btn .mobile-btn {
                 width: 100%;
                 text-align: center;
-                padding: 1.2rem 2rem;
-                font-size: 1.15rem;
+                padding: 0.65rem 1.2rem;
+                font-size: 0.85rem;
                 display: block;
             }
 
@@ -1649,8 +1657,8 @@
 
             .logo img {
                 width: auto;
-                max-width: 280px;
-                max-height: 45px;
+                max-width: 300px;
+                max-height: 50px;
                 height: auto;
             }
 
@@ -1821,7 +1829,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="{{ asset('600-200_pp_wh_page-0001-removebg-preview (2).png') }}" alt="Inskola Logo" style="display: block; width: 300px; max-width: 300px; max-height: 45px; height: auto;">
+                <img src="{{ asset('600-200_pp_wh_page-0001-removebg-preview (2).png') }}" alt="Inskola Logo" style="display: block; width: 350px; max-width: 350px; max-height: 52px; height: auto;">
             </a>
             
             <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
