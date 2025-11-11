@@ -888,8 +888,8 @@
 
         /* Contact Section */
         .contact {
-            padding: 120px 2rem;
-            background: var(--bg-lighter);
+            padding: 45px 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
             position: relative;
         }
 
@@ -905,42 +905,43 @@
         }
 
         .contact-container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
         .contact-form {
-            background: var(--white);
-            padding: 3.5rem;
-            border-radius: 24px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(24, 181, 150, 0.1);
-            transition: box-shadow 0.3s ease;
+            background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+            padding: 1.5rem 1.8rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1.5px solid rgba(24, 181, 150, 0.1);
+            transition: all 0.35s ease;
         }
 
         .contact-form:hover {
-            box-shadow: var(--shadow-xl);
+            box-shadow: 0 8px 24px rgba(24, 181, 150, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: rgba(24, 181, 150, 0.2);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
             font-weight: 600;
             color: var(--text-dark);
-            font-size: 1.05rem;
+            font-size: 0.85rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1.2rem 1.5rem;
-            border: 2px solid #e8e8e8;
-            border-radius: 12px;
-            font-size: 1.05rem;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid #e8e8e8;
+            border-radius: 10px;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             font-family: inherit;
             background: var(--bg-lighter);
@@ -951,68 +952,70 @@
             outline: none;
             border-color: var(--primary-color);
             background: var(--white);
-            box-shadow: 0 0 0 4px rgba(24, 181, 150, 0.12);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 2.5px rgba(24, 181, 150, 0.1);
+            transform: translateY(-1px);
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 150px;
+            min-height: 100px;
         }
 
         .submit-button {
             background: var(--gradient-primary);
             color: var(--white);
-            padding: 1.2rem 3rem;
+            padding: 0.8rem 2rem;
             border: none;
-            border-radius: 30px;
-            font-size: 1.15rem;
+            border-radius: 22px;
+            font-size: 0.88rem;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: 2px solid transparent;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 4px 15px rgba(24, 181, 150, 0.25);
             letter-spacing: 0.02em;
         }
 
         .submit-button:hover {
-            background: var(--gradient-primary);
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, #20d4ae 0%, #18b596 30%, #2ee5c4 70%, #20d4ae 100%);
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 6px 20px rgba(24, 181, 150, 0.3);
         }
 
         .submit-button:active {
-            transform: translateY(-2px) scale(1);
+            transform: translateY(-1px) scale(1);
         }
 
         .success-message {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: var(--white);
-            padding: 1.5rem;
+            padding: 0.85rem 1rem;
             border-radius: 10px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.2rem;
             text-align: center;
             font-weight: 600;
+            font-size: 0.85rem;
             animation: fadeInDown 0.5s ease;
         }
 
         .error-message {
             background: #ef4444;
             color: var(--white);
-            padding: 0.7rem 1rem;
+            padding: 0.5rem 0.8rem;
             border-radius: 8px;
-            margin-top: 0.5rem;
-            font-size: 0.95rem;
+            margin-top: 0.35rem;
+            font-size: 0.8rem;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-            color: var(--white);
-            padding: 5rem 2rem 2.5rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            color: var(--text-dark);
+            padding: 2.5rem 2rem 1.5rem;
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(24, 181, 150, 0.1);
         }
 
         footer::before {
@@ -1021,27 +1024,29 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 2px;
             background: var(--gradient-primary);
+            opacity: 0.6;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 1.5rem;
+            align-items: start;
         }
 
         .footer-section h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1.8rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
             color: var(--primary-color);
             font-weight: 700;
             letter-spacing: -0.01em;
             position: relative;
-            padding-bottom: 1rem;
+            padding-bottom: 0.6rem;
         }
 
         .footer-section h3::after {
@@ -1049,40 +1054,105 @@
             position: absolute;
             bottom: 0;
             {{ $isRTL ? 'right' : 'left' }}: 0;
-            width: 50px;
-            height: 3px;
+            width: 35px;
+            height: 2px;
             background: var(--gradient-primary);
             border-radius: 2px;
         }
 
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.85);
+        .footer-logo {
+            margin-bottom: 0.5rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-logo a {
+            display: inline-block;
+            transition: transform 0.3s ease;
             text-decoration: none;
+        }
+
+        .footer-logo a:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-logo img {
+            height: auto;
+            width: 320px;
+            max-width: 320px;
+            max-height: 48px;
+            object-fit: contain;
             display: block;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-            line-height: 1.8;
+            filter: brightness(0.95);
+        }
+
+        .footer-section:first-child {
+            padding-top: 0;
+        }
+
+        .footer-section:first-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-section:first-child p {
+            text-align: center;
+            width: 100%;
+            max-width: 100%;
+            margin-top: 0;
+        }
+
+        .footer-section p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+            margin-top: 0.5rem;
+            max-width: 280px;
         }
 
         .footer-section a {
-            padding: 0.3rem 0;
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.6rem;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            padding: 0.25rem 0;
+            position: relative;
+        }
+
+        .footer-section a::before {
+            content: '{{ $isRTL ? "←" : "→" }}';
+            position: absolute;
+            {{ $isRTL ? 'right' : 'left' }}: -15px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--primary-color);
         }
 
         .footer-section a:hover {
             color: var(--primary-color);
-            transform: translateX({{ $isRTL ? '-5px' : '5px' }});
+            transform: translateX({{ $isRTL ? '-8px' : '8px' }});
+            padding-{{ $isRTL ? 'right' : 'left' }}: 12px;
+        }
+
+        .footer-section a:hover::before {
+            opacity: 1;
+            {{ $isRTL ? 'right' : 'left' }}: 0;
         }
 
         .footer-bottom {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-            padding-top: 2.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.05rem;
+            color: var(--text-light);
+            font-size: 0.8rem;
         }
 
         /* Animations */
@@ -1607,13 +1677,85 @@
                 grid-template-columns: 1fr;
             }
 
+            .contact {
+                padding: 40px 1.5rem;
+            }
+
             .contact-form {
-                padding: 2rem 1.5rem;
+                padding: 1.3rem 1.2rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.9rem;
+            }
+
+            .form-group label {
+                font-size: 0.8rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.7rem 0.9rem;
+                font-size: 0.8rem;
+            }
+
+            .form-group textarea {
+                min-height: 90px;
+            }
+
+            .submit-button {
+                padding: 0.75rem 1.8rem;
+                font-size: 0.85rem;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+                margin-bottom: 1.3rem;
+            }
+
+            .footer-section:first-child {
+                text-align: center;
+            }
+
+            .footer-section p {
+                max-width: 100%;
+                margin: 0.8rem auto 0;
+            }
+
+            footer {
+                padding: 2rem 1.5rem 1.3rem;
+            }
+
+            .footer-section h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.9rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .footer-section h3::after {
+                width: 30px;
+            }
+
+            .footer-logo img {
+                width: 260px;
+                max-width: 260px;
+                max-height: 40px;
+            }
+
+            .footer-section p {
+                font-size: 0.75rem;
+            }
+
+            .footer-section a {
+                font-size: 0.75rem;
+                margin-bottom: 0.45rem;
+            }
+
+            .footer-bottom {
+                padding-top: 1.3rem;
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -1830,14 +1972,18 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>{{ __('messages.nav.home') }}</h3>
+                <div class="footer-logo">
+                    <a href="#home">
+                        <img src="{{ asset('600-200_pp_wh_page-0001-removebg-preview (2).png') }}" alt="Inskola Logo">
+                    </a>
+                </div>
                 <p>{{ __('messages.footer.description') }}</p>
             </div>
             <div class="footer-section">
                 <h3>{{ __('messages.footer.about_us') }}</h3>
-                <a href="#">{{ __('messages.nav.about') }}</a>
-                <a href="#">{{ __('messages.nav.subjects') }}</a>
-                <a href="#">{{ __('messages.nav.contact') }}</a>
+                <a href="#about">{{ __('messages.nav.about') }}</a>
+                <a href="#subjects">{{ __('messages.nav.subjects') }}</a>
+                <a href="#contact">{{ __('messages.nav.contact') }}</a>
             </div>
             <div class="footer-section">
                 <h3>{{ __('messages.footer.support') }}</h3>
