@@ -628,12 +628,14 @@
             padding: 1.6rem 1.5rem;
             border-radius: 16px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: 1.5px solid rgba(24, 181, 150, 0.08);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            text-align: center;
             height: 100%;
         }
 
@@ -641,39 +643,43 @@
             content: '';
             position: absolute;
             top: 0;
-            {{ $isRTL ? 'right' : 'left' }}: 0;
-            width: 3px;
-            height: 0;
-            background: var(--gradient-primary);
-            transition: height 0.35s ease;
-            z-index: 1;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(24, 181, 150, 0.03) 0%, rgba(24, 181, 150, 0.08) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
         }
 
         .feature-card::after {
             content: '';
             position: absolute;
-            top: -50%;
-            {{ $isRTL ? 'right' : 'left' }}: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(24, 181, 150, 0.05) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.35s ease;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(24, 181, 150, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: 0;
         }
 
         .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 24px rgba(24, 181, 150, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-color: rgba(24, 181, 150, 0.25);
+            transform: scale(1.03);
+            box-shadow: 0 12px 32px rgba(24, 181, 150, 0.2), 0 6px 16px rgba(0, 0, 0, 0.1);
+            border-color: rgba(24, 181, 150, 0.3);
             background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
         }
 
         .feature-card:hover::before {
-            height: 100%;
+            opacity: 1;
         }
 
         .feature-card:hover::after {
-            opacity: 1;
+            width: 300px;
+            height: 300px;
         }
 
         .feature-icon-wrapper {
@@ -685,7 +691,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 1rem;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             z-index: 2;
         }
@@ -693,18 +699,28 @@
         .feature-icon {
             font-size: 2.4rem;
             display: block;
-            transition: transform 0.35s ease;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             filter: drop-shadow(0 2px 4px rgba(24, 181, 150, 0.15));
         }
 
         .feature-card:hover .feature-icon-wrapper {
-            background: linear-gradient(135deg, rgba(24, 181, 150, 0.15) 0%, rgba(24, 181, 150, 0.08) 100%);
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(24, 181, 150, 0.2);
+            background: linear-gradient(135deg, rgba(24, 181, 150, 0.2) 0%, rgba(24, 181, 150, 0.12) 100%);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(24, 181, 150, 0.3);
+            animation: iconBounce 0.6s ease;
         }
 
         .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        @keyframes iconBounce {
+            0%, 100% {
+                transform: translateY(-8px) scale(1.1);
+            }
+            50% {
+                transform: translateY(-12px) scale(1.15);
+            }
         }
 
         .feature-card h3 {
@@ -716,10 +732,12 @@
             line-height: 1.4;
             position: relative;
             z-index: 2;
+            transition: color 0.4s ease, transform 0.4s ease;
         }
 
         .feature-card:hover h3 {
             color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
         .feature-card p {
@@ -729,6 +747,11 @@
             flex-grow: 1;
             position: relative;
             z-index: 2;
+            transition: color 0.4s ease;
+        }
+
+        .feature-card:hover p {
+            color: var(--text-dark);
         }
 
         /* Subjects Section */
