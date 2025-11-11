@@ -75,12 +75,12 @@
         }
 
         .nav-container {
-            max-width: 1600px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 4rem;
+            padding: 0.8rem 2rem;
             position: relative;
         }
 
@@ -99,9 +99,9 @@
 
         .logo img {
             height: auto;
-            width: 500px;
-            max-width: 500px;
-            max-height: 70px;
+            width: 300px;
+            max-width: 300px;
+            max-height: 45px;
             object-fit: contain;
             display: block;
             transition: all 0.3s ease;
@@ -129,8 +129,8 @@
             color: var(--text-dark);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
-            padding: 0.8rem 1.5rem;
+            font-size: 0.88rem;
+            padding: 0.6rem 1.1rem;
             border-radius: 12px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -178,12 +178,12 @@
         }
 
         .language-switcher a {
-            padding: 0.6rem 1.4rem;
+            padding: 0.45rem 1rem;
             border-radius: 50px;
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
             white-space: nowrap;
         }
@@ -202,11 +202,11 @@
         .btn-primary {
             background: var(--gradient-primary);
             color: var(--white);
-            padding: 0.85rem 2.2rem;
+            padding: 0.65rem 1.6rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.85rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             white-space: nowrap;
@@ -328,12 +328,12 @@
         }
 
         .hero-content {
-            max-width: 1600px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 180px 4rem 120px;
+            padding: 100px 2rem 70px;
             display: grid;
             grid-template-columns: 0.9fr 1.1fr;
-            gap: 6rem;
+            gap: 2.5rem;
             align-items: center;
             position: relative;
             z-index: 1;
@@ -353,12 +353,12 @@
         .hero-logo-container {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
             animation: fadeInUp 0.8s ease;
             background: linear-gradient(135deg, #18b596 0%, #149479 30%, #20d4ae 70%, #2ee5c4 100%);
-            padding: 1.4rem 2.4rem;
-            border-radius: 24px;
+            padding: 0.65rem 1.2rem;
+            border-radius: 16px;
             backdrop-filter: blur(20px);
             border: 2px solid rgba(24, 181, 150, 0.2);
             box-shadow: 
@@ -376,19 +376,19 @@
         }
 
         .hero-logo-container img {
-            height: 90px;
+            height: 45px;
             width: auto;
-            max-width: 320px;
+            max-width: 180px;
             object-fit: contain;
             filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.2));
         }
 
         /* Enhanced Typography */
         .hero-text h1 {
-            font-size: 4.8rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.15;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
             letter-spacing: -0.04em;
             background: linear-gradient(135deg, var(--text-dark) 0%, #149479 50%, var(--text-dark) 100%);
             -webkit-background-clip: text;
@@ -414,9 +414,9 @@
         }
 
         .hero-text h2 {
-            font-size: 2.4rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1rem;
             opacity: 0.95;
             letter-spacing: -0.02em;
             color: var(--text-dark);
@@ -426,10 +426,10 @@
         }
 
         .hero-text p {
-            font-size: 1.35rem;
-            margin-bottom: 3.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.8rem;
             opacity: 0.85;
-            line-height: 1.85;
+            line-height: 1.65;
             max-width: 95%;
             color: var(--text-light);
             text-shadow: 0 1px 5px rgba(0, 0, 0, 0.03);
@@ -457,8 +457,8 @@
             background: linear-gradient(135deg, #18b596 0%, #149479 30%, #20d4ae 70%, #2ee5c4 100%);
             color: var(--white);
             border: none;
-            font-size: 1.25rem;
-            padding: 1.3rem 3.5rem;
+            font-size: 0.85rem;
+            padding: 0.85rem 1.9rem;
             box-shadow: 
                 0 10px 35px rgba(24, 181, 150, 0.25),
                 0 4px 15px rgba(24, 181, 150, 0.15),
@@ -498,8 +498,8 @@
         .hero-buttons .btn-secondary {
             border: 2.5px solid var(--primary-color);
             color: var(--primary-color);
-            font-size: 1.25rem;
-            padding: 1.3rem 3.5rem;
+            font-size: 0.85rem;
+            padding: 0.85rem 1.9rem;
             background: transparent;
             border-radius: 50px;
             font-weight: 700;
@@ -534,9 +534,9 @@
         .hero-image img {
             width: 100%;
             height: auto;
-            max-height: 600px;
+            max-height: 360px;
             object-fit: cover;
-            border-radius: 30px;
+            border-radius: 18px;
             box-shadow: 
                 0 20px 60px rgba(0, 0, 0, 0.15),
                 0 0 0 1px rgba(0, 0, 0, 0.05);
@@ -1522,7 +1522,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="{{ asset('600-200_pp_wh_page-0001-removebg-preview (2).png') }}" alt="Inskola Logo" style="display: block; width: 500px; max-width: 500px; max-height: 70px; height: auto;">
+                <img src="{{ asset('600-200_pp_wh_page-0001-removebg-preview (2).png') }}" alt="Inskola Logo" style="display: block; width: 300px; max-width: 300px; max-height: 45px; height: auto;">
             </a>
             
             <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
