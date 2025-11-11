@@ -6,7 +6,7 @@
 <html lang="{{ $locale }}" dir="{{ $isRTL ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>إنسكولا - {{ __('messages.hero.subtitle') }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -942,10 +942,18 @@
             padding: 0.75rem 1rem;
             border: 1.5px solid #e8e8e8;
             border-radius: 10px;
-            font-size: 0.85rem;
+            font-size: 1rem; /* 16px minimum to prevent auto-zoom on mobile */
             transition: all 0.3s ease;
             font-family: inherit;
             background: var(--bg-lighter);
+        }
+
+        /* Prevent zoom on input focus for mobile devices */
+        @media screen and (max-width: 768px) {
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px; /* Explicit 16px to prevent iOS zoom */
+            }
         }
 
         .form-group input:focus,
