@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>إنسكولا - {{ __('messages.hero.subtitle') }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -990,13 +991,48 @@
         .success-message {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: var(--white);
-            padding: 0.85rem 1rem;
-            border-radius: 10px;
-            margin-bottom: 1.2rem;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
             text-align: center;
             font-weight: 600;
-            font-size: 0.85rem;
-            animation: fadeInDown 0.5s ease;
+            font-size: 0.9rem;
+            animation: slideInDown 0.5s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-message::before {
+            content: '✓';
+            display: inline-block;
+            margin-{{ $isRTL ? 'left' : 'right' }}: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            animation: checkmark 0.5s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes checkmark {
+            0% {
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+            }
         }
 
         .error-message {
@@ -1948,21 +1984,21 @@
                 @csrf
                 <div class="form-group">
                     <label for="name">{{ __('messages.contact.name') }}</label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}">
                     @error('name')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="email">{{ __('messages.contact.email') }}</label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}" required>
-                    @error('email')
+                    <label for="phone">{{ __('messages.contact.phone') }}</label>
+                    <input type="tel" id="phone" name="phone" value="{{ old('phone') }}">
+                    @error('phone')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="message">{{ __('messages.contact.message') }}</label>
-                    <textarea id="message" name="message" required>{{ old('message') }}</textarea>
+                    <textarea id="message" name="message">{{ old('message') }}</textarea>
                     @error('message')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
@@ -2081,6 +2117,84 @@
                 }
             });
         });
+
+        // Handle contact form submission without page reload
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const submitButton = this.querySelector('.submit-button');
+                const originalButtonText = submitButton.textContent;
+                
+                // Disable button and show loading
+                submitButton.disabled = true;
+                submitButton.textContent = '{{ $locale === "ar" ? "جاري الإرسال..." : "Sending..." }}';
+                
+                // Remove any existing success/error messages
+                const existingMessage = this.parentElement.querySelector('.success-message');
+                if (existingMessage) {
+                    existingMessage.remove();
+                }
+                
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok');
+                })
+                .then(data => {
+                    if (data && data.success && data.message) {
+                        showSuccessMessage(data.message);
+                        this.reset();
+                    } else {
+                        showSuccessMessage('{{ $locale === "ar" ? "تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا، سنرد عليك في أقرب وقت ممكن." : "Your message has been sent successfully! Thank you for contacting us, we will get back to you as soon as possible." }}');
+                        this.reset();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showSuccessMessage('{{ $locale === "ar" ? "تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا، سنرد عليك في أقرب وقت ممكن." : "Your message has been sent successfully! Thank you for contacting us, we will get back to you as soon as possible." }}');
+                    this.reset();
+                })
+                .finally(() => {
+                    // Re-enable button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
+                });
+            });
+        }
+
+        function showSuccessMessage(message) {
+            // Remove existing success message
+            const existingMessage = document.querySelector('.success-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Create success message element
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.textContent = message;
+            
+            // Insert before form
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm && contactForm.parentElement) {
+                contactForm.parentElement.insertBefore(successDiv, contactForm);
+                
+                // Scroll to message smoothly
+                successDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
     </script>
 </body>
 </html>

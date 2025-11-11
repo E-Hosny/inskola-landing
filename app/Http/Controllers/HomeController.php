@@ -37,19 +37,27 @@ class HomeController extends Controller
     public function storeContact(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'message' => 'required|string|max:1000'
+            'name' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'message' => 'nullable|string|max:1000'
         ]);
 
         Contact::create($validated);
 
         $locale = Session::get('locale', config('app.locale'));
         $successMessage = $locale === 'ar' 
-            ? 'شكراً لك على رسالتك! سنتواصل معك قريباً.'
-            : 'Thank you for your message! We will get back to you soon.';
+            ? 'تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا، سنرد عليك في أقرب وقت ممكن.'
+            : 'Your message has been sent successfully! Thank you for contacting us, we will get back to you as soon as possible.';
 
-        return redirect()->route('home')->with('success', $successMessage);
+        // Check if request is AJAX
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => $successMessage
+            ]);
+        }
+
+        return redirect()->back()->with('success', $successMessage);
     }
 }
 
