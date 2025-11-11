@@ -558,8 +558,8 @@
 
         /* Features Section */
         .features {
-            padding: 120px 2rem;
-            background: var(--bg-lighter);
+            padding: 60px 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
             position: relative;
         }
 
@@ -575,21 +575,21 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 2.8rem;
             position: relative;
         }
 
         .section-header h2 {
-            font-size: 3.2rem;
+            font-size: 1.9rem;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.7rem;
             letter-spacing: -0.02em;
             position: relative;
             display: inline-block;
@@ -598,38 +598,43 @@
         .section-header h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             {{ $isRTL ? 'right' : 'left' }}: 50%;
             transform: translateX({{ $isRTL ? '50%' : '-50%' }});
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: var(--gradient-primary);
             border-radius: 2px;
         }
 
         .section-header p {
-            font-size: 1.35rem;
+            font-size: 0.9rem;
             color: var(--text-light);
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
-            line-height: 1.8;
+            line-height: 1.65;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .feature-card {
-            background: var(--white);
-            padding: 3rem 2.5rem;
-            border-radius: 24px;
-            box-shadow: var(--shadow);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid transparent;
+            background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+            padding: 1.6rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1.5px solid rgba(24, 181, 150, 0.08);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .feature-card::before {
@@ -637,46 +642,93 @@
             position: absolute;
             top: 0;
             {{ $isRTL ? 'right' : 'left' }}: 0;
-            width: 4px;
+            width: 3px;
             height: 0;
             background: var(--gradient-primary);
-            transition: height 0.4s ease;
+            transition: height 0.35s ease;
+            z-index: 1;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            {{ $isRTL ? 'right' : 'left' }}: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(24, 181, 150, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary-color);
+            transform: translateY(-6px);
+            box-shadow: 0 8px 24px rgba(24, 181, 150, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: rgba(24, 181, 150, 0.25);
+            background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
         }
 
         .feature-card:hover::before {
             height: 100%;
         }
 
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(24, 181, 150, 0.1) 0%, rgba(24, 181, 150, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+        }
+
         .feature-icon {
-            font-size: 4.5rem;
-            margin-bottom: 1.8rem;
-            display: inline-block;
-            transition: transform 0.4s ease;
-            filter: drop-shadow(0 4px 8px rgba(24, 181, 150, 0.2));
+            font-size: 2.4rem;
+            display: block;
+            transition: transform 0.35s ease;
+            filter: drop-shadow(0 2px 4px rgba(24, 181, 150, 0.15));
+        }
+
+        .feature-card:hover .feature-icon-wrapper {
+            background: linear-gradient(135deg, rgba(24, 181, 150, 0.15) 0%, rgba(24, 181, 150, 0.08) 100%);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(24, 181, 150, 0.2);
         }
 
         .feature-card:hover .feature-icon {
-            transform: scale(1.15) rotate(5deg);
+            transform: scale(1.1) rotate(5deg);
         }
 
         .feature-card h3 {
-            font-size: 1.7rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.7rem;
             letter-spacing: -0.01em;
+            line-height: 1.4;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card:hover h3 {
+            color: var(--primary-color);
         }
 
         .feature-card p {
             color: var(--text-light);
-            line-height: 1.85;
-            font-size: 1.08rem;
+            line-height: 1.65;
+            font-size: 0.85rem;
+            flex-grow: 1;
+            position: relative;
+            z-index: 2;
         }
 
         /* Subjects Section */
@@ -1072,7 +1124,36 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.1rem;
+            }
+        }
+
         @media (max-width: 992px) {
+            .features {
+                padding: 50px 1.5rem;
+            }
+
+            .section-header {
+                margin-bottom: 2.2rem;
+            }
+
+            .features-grid {
+                gap: 1rem;
+            }
+
+            .feature-icon-wrapper {
+                width: 56px;
+                height: 56px;
+                margin-bottom: 0.9rem;
+            }
+
+            .feature-icon {
+                font-size: 2.1rem;
+            }
+
             .nav-container {
                 padding: 1rem 2rem;
                 position: relative;
@@ -1493,11 +1574,23 @@
                 padding: 60px 1rem;
             }
 
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
             .section-header h2 {
                 font-size: 1.8rem;
             }
 
-            .features-grid,
+            .section-header p {
+                font-size: 0.9rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
             .subjects-grid {
                 grid-template-columns: 1fr;
             }
@@ -1590,32 +1683,44 @@
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon">🎮</div>
+                    </div>
                     <h3>{{ __('messages.features.interactive_lessons.title') }}</h3>
                     <p>{{ __('messages.features.interactive_lessons.description') }}</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon">📊</div>
+                    </div>
                     <h3>{{ __('messages.features.track_progress.title') }}</h3>
                     <p>{{ __('messages.features.track_progress.description') }}</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">👨‍🏫</div>
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon">👨‍🏫</div>
+                    </div>
                     <h3>{{ __('messages.features.certified_teachers.title') }}</h3>
                     <p>{{ __('messages.features.certified_teachers.description') }}</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon">🔒</div>
+                    </div>
                     <h3>{{ __('messages.features.safe_environment.title') }}</h3>
                     <p>{{ __('messages.features.safe_environment.description') }}</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📚</div>
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon">📚</div>
+                    </div>
                     <h3>{{ __('messages.features.curriculum_aligned.title') }}</h3>
                     <p>{{ __('messages.features.curriculum_aligned.description') }}</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon">⏰</div>
+                    </div>
                     <h3>{{ __('messages.features.anytime_learning.title') }}</h3>
                     <p>{{ __('messages.features.anytime_learning.description') }}</p>
                 </div>
