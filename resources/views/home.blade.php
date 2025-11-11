@@ -756,8 +756,8 @@
 
         /* Subjects Section */
         .subjects {
-            padding: 120px 2rem;
-            background: var(--white);
+            padding: 60px 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
             position: relative;
         }
 
@@ -774,33 +774,42 @@
 
         .subjects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .subject-card {
             background: var(--gradient-primary);
-            padding: 3rem 2.5rem;
-            border-radius: 24px;
+            padding: 1.6rem 1.5rem;
+            border-radius: 16px;
             text-align: center;
             color: var(--white);
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 4px 12px rgba(24, 181, 150, 0.2), 0 2px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
         }
 
         .subject-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            {{ $isRTL ? 'right' : 'left' }}: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: 0;
         }
 
         .subject-card::after {
@@ -810,113 +819,71 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
+            z-index: 0;
         }
 
-        .subject-card:hover::before,
+        .subject-card:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
         .subject-card:hover::after {
             opacity: 1;
         }
 
         .subject-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: var(--shadow-xl);
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(24, 181, 150, 0.35), 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .subject-icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.9rem;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 2;
         }
 
         .subject-icon {
-            font-size: 4.5rem;
-            margin-bottom: 1.2rem;
-            display: inline-block;
-            transition: transform 0.4s ease;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+            font-size: 2.4rem;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+        }
+
+        .subject-card:hover .subject-icon-wrapper {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: iconBounce 0.6s ease;
         }
 
         .subject-card:hover .subject-icon {
-            transform: scale(1.2) rotate(-5deg);
+            transform: scale(1.15) rotate(10deg);
         }
 
         .subject-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.1rem;
             font-weight: 700;
             letter-spacing: -0.01em;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 120px 2rem;
-            background: var(--gradient-primary);
-            color: var(--white);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             position: relative;
-            overflow: hidden;
+            z-index: 2;
+            transition: transform 0.4s ease;
         }
 
-        .stats::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-            animation: pulse 10s ease-in-out infinite;
-        }
-
-        .stats::after {
-            content: '';
-            position: absolute;
-            top: -30%;
-            {{ $isRTL ? 'right' : 'left' }}: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 25s ease-in-out infinite;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px) scale(1.05);
-        }
-
-        .stat-number {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 0.8rem;
-            display: block;
-            background: linear-gradient(135deg, var(--white) 0%, rgba(255,255,255,0.9) 50%, var(--white) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
-        }
-
-        .stat-label {
-            font-size: 1.35rem;
-            opacity: 0.98;
-            font-weight: 600;
-            letter-spacing: 0.01em;
+        .subject-card:hover h3 {
+            transform: translateY(-2px);
         }
 
         /* Contact Section */
@@ -1152,6 +1119,11 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.1rem;
             }
+
+            .subjects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.1rem;
+            }
         }
 
         @media (max-width: 992px) {
@@ -1174,6 +1146,24 @@
             }
 
             .feature-icon {
+                font-size: 2.1rem;
+            }
+
+            .subjects {
+                padding: 50px 1.5rem;
+            }
+
+            .subjects-grid {
+                gap: 1rem;
+            }
+
+            .subject-icon-wrapper {
+                width: 56px;
+                height: 56px;
+                margin-bottom: 0.8rem;
+            }
+
+            .subject-icon {
                 font-size: 2.1rem;
             }
 
@@ -1592,7 +1582,6 @@
 
             .features,
             .subjects,
-            .stats,
             .contact {
                 padding: 60px 1rem;
             }
@@ -1616,10 +1605,6 @@
 
             .subjects-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .stat-number {
-                font-size: 3rem;
             }
 
             .contact-form {
@@ -1760,55 +1745,40 @@
             </div>
             <div class="subjects-grid">
                 <div class="subject-card">
-                    <div class="subject-icon">➕</div>
+                    <div class="subject-icon-wrapper">
+                        <div class="subject-icon">➕</div>
+                    </div>
                     <h3>{{ __('messages.subjects.math') }}</h3>
                 </div>
                 <div class="subject-card">
-                    <div class="subject-icon">📖</div>
+                    <div class="subject-icon-wrapper">
+                        <div class="subject-icon">📖</div>
+                    </div>
                     <h3>{{ __('messages.subjects.arabic') }}</h3>
                 </div>
                 <div class="subject-card">
-                    <div class="subject-icon">🔤</div>
+                    <div class="subject-icon-wrapper">
+                        <div class="subject-icon">🔤</div>
+                    </div>
                     <h3>{{ __('messages.subjects.english') }}</h3>
                 </div>
                 <div class="subject-card">
-                    <div class="subject-icon">🔬</div>
+                    <div class="subject-icon-wrapper">
+                        <div class="subject-icon">🔬</div>
+                    </div>
                     <h3>{{ __('messages.subjects.science') }}</h3>
                 </div>
                 <div class="subject-card">
-                    <div class="subject-icon">🌍</div>
+                    <div class="subject-icon-wrapper">
+                        <div class="subject-icon">🌍</div>
+                    </div>
                     <h3>{{ __('messages.subjects.social') }}</h3>
                 </div>
                 <div class="subject-card">
-                    <div class="subject-icon">🕌</div>
+                    <div class="subject-icon-wrapper">
+                        <div class="subject-icon">🕌</div>
+                    </div>
                     <h3>{{ __('messages.subjects.quran') }}</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="section-header">
-                <h2 style="color: white;">{{ __('messages.stats.title') }}</h2>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">15,000+</span>
-                    <span class="stat-label">{{ __('messages.stats.active_students') }}</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">250+</span>
-                    <span class="stat-label">{{ __('messages.stats.qualified_teachers') }}</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">5,000+</span>
-                    <span class="stat-label">{{ __('messages.stats.lessons') }}</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">98%</span>
-                    <span class="stat-label">{{ __('messages.stats.satisfaction_rate') }}</span>
                 </div>
             </div>
         </div>
