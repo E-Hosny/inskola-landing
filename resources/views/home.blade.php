@@ -1725,37 +1725,41 @@
             }
 
             footer {
-                padding: 2rem 1.5rem 1.3rem;
+                padding: 2.5rem 1.5rem 1.8rem;
             }
 
             .footer-section h3 {
-                font-size: 0.95rem;
-                margin-bottom: 0.9rem;
-                padding-bottom: 0.5rem;
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.6rem;
             }
 
             .footer-section h3::after {
-                width: 30px;
+                width: 35px;
+            }
+
+            .footer-logo {
+                margin-bottom: 0.6rem;
             }
 
             .footer-logo img {
-                width: 260px;
-                max-width: 260px;
-                max-height: 40px;
+                width: 300px;
+                max-width: 300px;
+                max-height: 45px;
             }
 
             .footer-section p {
-                font-size: 0.75rem;
+                font-size: 0.9rem;
             }
 
             .footer-section a {
-                font-size: 0.75rem;
-                margin-bottom: 0.45rem;
+                font-size: 0.9rem;
+                margin-bottom: 0.6rem;
             }
 
             .footer-bottom {
-                padding-top: 1.3rem;
-                font-size: 0.75rem;
+                padding-top: 1.5rem;
+                font-size: 0.85rem;
             }
         }
     </style>
