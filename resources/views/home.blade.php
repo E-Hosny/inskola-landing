@@ -1133,46 +1133,87 @@
                 z-index: 1000;
                 justify-content: space-between !important;
                 flex-wrap: nowrap;
+                align-items: center;
             }
 
             .logo {
                 order: {{ $isRTL ? '2' : '1' }} !important;
-                flex: 0 1 auto;
+                flex: 0 0 auto !important;
                 max-width: calc(100% - 60px);
+                margin: 0 !important;
+                margin-{{ $isRTL ? 'right' : 'left' }}: 0 !important;
             }
 
             .logo img {
-                width: 100%;
-                max-width: 400px;
-                max-height: 60px;
+                width: auto !important;
+                max-width: 300px;
+                max-height: 50px;
                 height: auto;
+                display: block;
+            }
+
+            /* Mobile Menu Overlay */
+            .mobile-menu-overlay {
+                display: none;
+            }
+
+            @media (max-width: 992px) {
+                .mobile-menu-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.5);
+                    backdrop-filter: blur(4px);
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    z-index: 998;
+                    pointer-events: none;
+                    display: none;
+                }
+
+                .mobile-menu-overlay.active {
+                    opacity: 1;
+                    pointer-events: auto;
+                    display: block;
+                }
             }
 
             .nav-menu {
                 position: fixed;
-                {{ $isRTL ? 'right' : 'left' }}: -100%;
-                top: 0;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.8);
                 flex-direction: column;
                 background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
-                width: 100%;
-                height: 100vh;
+                backdrop-filter: blur(20px);
+                width: 90%;
+                max-width: 400px;
+                max-height: 85vh;
                 text-align: {{ $isRTL ? 'right' : 'left' }};
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: var(--shadow-xl);
-                padding: 100px 2rem 2rem;
+                transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                box-shadow: 
+                    0 20px 60px rgba(0, 0, 0, 0.3),
+                    0 0 0 1px rgba(255, 255, 255, 0.5);
+                padding: 2.5rem 1.5rem;
                 gap: 0.5rem;
                 justify-content: flex-start;
                 z-index: 999;
                 pointer-events: none;
                 display: none;
-                flex: 0;
                 margin: 0;
+                border-radius: 24px;
+                overflow-y: auto;
+                opacity: 0;
+                flex: 0 0 0 !important;
+                order: 999 !important;
             }
 
             .nav-menu.active {
                 display: flex;
-                {{ $isRTL ? 'right' : 'left' }}: 0;
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
                 pointer-events: auto;
             }
 
@@ -1186,6 +1227,59 @@
                 width: 100%;
                 font-size: 1.15rem;
                 border-radius: 15px;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu li a:hover {
+                background: rgba(24, 181, 150, 0.1);
+                transform: translateX({{ $isRTL ? '-5px' : '5px' }});
+            }
+
+            /* Close button for mobile menu */
+            .mobile-menu-close {
+                display: none;
+            }
+
+            @media (max-width: 992px) {
+                .mobile-menu-close {
+                    position: absolute;
+                    top: 1rem;
+                    {{ $isRTL ? 'left' : 'right' }}: 1rem;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: rgba(24, 181, 150, 0.1);
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    z-index: 1000;
+                }
+            }
+
+            .mobile-menu-close:hover {
+                background: rgba(24, 181, 150, 0.2);
+                transform: rotate(90deg);
+            }
+
+            .mobile-menu-close::before,
+            .mobile-menu-close::after {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 2px;
+                background: var(--primary-color);
+                border-radius: 2px;
+            }
+
+            .mobile-menu-close::before {
+                transform: rotate(45deg);
+            }
+
+            .mobile-menu-close::after {
+                transform: rotate(-45deg);
             }
 
             .hamburger {
@@ -1341,12 +1435,13 @@
 
             .logo {
                 max-width: calc(100% - 60px);
+                margin: 0;
             }
 
             .logo img {
-                width: 100%;
-                max-width: 320px;
-                max-height: 50px;
+                width: auto;
+                max-width: 280px;
+                max-height: 45px;
                 height: auto;
             }
 
@@ -1451,7 +1546,9 @@
                 <img src="{{ asset('600-200_pp_wh_page-0001-removebg-preview (2).png') }}" alt="Inskola Logo" style="display: block; width: 500px; max-width: 500px; max-height: 70px; height: auto;">
             </a>
             
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
             <ul class="nav-menu" id="navMenu">
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu"></button>
                 <li><a href="#home">{{ __('messages.nav.home') }}</a></li>
                 <li><a href="#subjects">{{ __('messages.nav.subjects') }}</a></li>
                 <li><a href="#about">{{ __('messages.nav.about') }}</a></li>
@@ -1685,24 +1782,55 @@
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
         const navActions = document.getElementById('navActions');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.classList.remove('active');
+            }
+            if (window.innerWidth > 992 && navActions) {
+                navActions.classList.remove('active');
+            }
+        }
+
+        function openMenu() {
+            hamburger.classList.add('active');
+            navMenu.classList.add('active');
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.classList.add('active');
+            }
+        }
 
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            // Only toggle navActions on desktop (it's hidden on mobile via CSS)
-            if (window.innerWidth > 992 && navActions) {
-                navActions.classList.toggle('active');
+            if (navMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
             }
         });
+
+        // Close menu when clicking close button
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeMenu();
+            });
+        }
+
+        // Close menu when clicking on overlay
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', () => {
+                closeMenu();
+            });
+        }
 
         // Close menu when clicking on a link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                if (window.innerWidth > 992 && navActions) {
-                    navActions.classList.remove('active');
-                }
+                closeMenu();
             });
         });
 
@@ -1732,3 +1860,4 @@
     </script>
 </body>
 </html>
+
