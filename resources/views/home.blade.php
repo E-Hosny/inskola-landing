@@ -952,7 +952,7 @@
         @media screen and (max-width: 768px) {
             .form-group input,
             .form-group textarea {
-                font-size: 16px; /* Explicit 16px to prevent iOS zoom */
+                font-size: 16px !important; /* Explicit 16px to prevent iOS zoom */
             }
         }
 
@@ -968,6 +968,14 @@
         .form-group textarea {
             resize: vertical;
             min-height: 100px;
+            font-size: 1rem; /* Ensure 16px for textarea to prevent mobile zoom */
+        }
+
+        /* Additional mobile fix for textarea */
+        @media screen and (max-width: 768px) {
+            .form-group textarea {
+                font-size: 16px !important; /* Force 16px on mobile to prevent zoom */
+            }
         }
 
         .submit-button {
@@ -1982,12 +1990,6 @@
                 <p>{{ __('messages.contact.subtitle') }}</p>
             </div>
 
-            @if(session('success'))
-                <div class="success-message">
-                    {{ session('success') }}
-                </div>
-            @endif
-
             <form class="contact-form" action="{{ route('contact.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -2013,6 +2015,12 @@
                 </div>
                 <button type="submit" class="submit-button">{{ __('messages.contact.send') }}</button>
             </form>
+
+            @if(session('success'))
+                <div class="success-message">
+                    {{ session('success') }}
+                </div>
+            @endif
         </div>
     </section>
 
@@ -2194,10 +2202,11 @@
             successDiv.className = 'success-message';
             successDiv.textContent = message;
             
-            // Insert before form
+            // Insert after form (after the submit button)
             const contactForm = document.querySelector('.contact-form');
             if (contactForm && contactForm.parentElement) {
-                contactForm.parentElement.insertBefore(successDiv, contactForm);
+                // Insert after the form
+                contactForm.parentElement.insertBefore(successDiv, contactForm.nextSibling);
                 
                 // Scroll to message smoothly
                 successDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
