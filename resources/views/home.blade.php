@@ -332,14 +332,19 @@
             margin: 0 auto;
             padding: 180px 4rem 120px;
             display: grid;
-            grid-template-columns: {{ $isRTL ? '0.95fr 1.05fr' : '1.05fr 0.95fr' }};
+            grid-template-columns: 0.9fr 1.1fr;
             gap: 6rem;
             align-items: center;
             position: relative;
             z-index: 1;
         }
 
+        .hero-image {
+            order: {{ $isRTL ? '2' : '1' }};
+        }
+
         .hero-text {
+            order: {{ $isRTL ? '1' : '2' }};
             text-align: {{ $isRTL ? 'right' : 'left' }};
             position: relative;
         }
@@ -518,91 +523,32 @@
         /* Enhanced Image Section */
         .hero-image {
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 2.5rem;
             animation: fadeIn 1s ease 0.4s;
             animation-fill-mode: both;
             position: relative;
             padding: 2rem 0;
         }
 
-        .hero-logo-large {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-logo-large::before {
-            content: '';
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(24, 181, 150, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulseGlow 4s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        .hero-logo-large::after {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(24, 181, 150, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulseGlow 6s ease-in-out infinite 1s;
-            z-index: -2;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.15); opacity: 0.8; }
-        }
-
-        .hero-logo-large img {
-            height: 380px;
-            width: auto;
-            max-width: 580px;
-            object-fit: contain;
-            filter: drop-shadow(0 20px 60px rgba(24, 181, 150, 0.2));
-            background: linear-gradient(135deg, #18b596 0%, #149479 30%, #20d4ae 70%, #2ee5c4 100%);
-            padding: 3rem;
-            border-radius: 35px;
-            backdrop-filter: blur(25px);
-            border: 3px solid rgba(24, 181, 150, 0.2);
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+            border-radius: 30px;
             box-shadow: 
-                0 20px 60px rgba(24, 181, 150, 0.2),
-                inset 0 2px 10px rgba(255, 255, 255, 0.2);
-            animation: float 5s ease-in-out infinite;
-            position: relative;
-            z-index: 2;
+                0 20px 60px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(0, 0, 0, 0.05);
             transition: all 0.4s ease;
+            filter: brightness(1.02) contrast(1.05);
         }
 
-        .hero-logo-large:hover img {
-            transform: translateY(-10px) scale(1.02);
+        .hero-image:hover img {
+            transform: translateY(-5px) scale(1.01);
             box-shadow: 
-                0 25px 70px rgba(24, 181, 150, 0.3),
-                inset 0 2px 10px rgba(255, 255, 255, 0.3);
-        }
-
-        .hero-illustration {
-            font-size: 12rem;
-            filter: drop-shadow(0 15px 40px rgba(24, 181, 150, 0.15));
-            animation: float 4.5s ease-in-out infinite 0.8s;
-            position: relative;
-            z-index: 2;
-            opacity: 0.85;
-            transition: transform 0.3s ease;
-        }
-
-        .hero-illustration:hover {
-            transform: translateY(-15px) scale(1.1) rotate(5deg);
-            filter: drop-shadow(0 20px 50px rgba(24, 181, 150, 0.25));
+                0 25px 70px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(0, 0, 0, 0.08);
         }
 
         @keyframes float {
@@ -1441,24 +1387,18 @@
                 font-size: 1.2rem;
             }
 
-            .hero-logo-large::before {
-                width: 350px;
-                height: 350px;
+            .hero-image {
+                order: 1;
             }
 
-            .hero-logo-large::after {
-                width: 400px;
-                height: 400px;
+            .hero-text {
+                order: 2;
             }
 
-            .hero-logo-large img {
-                height: 280px;
-                max-width: 420px;
-                padding: 2.5rem;
-            }
-
-            .hero-illustration {
-                font-size: 10rem;
+            .hero-image img {
+                max-height: 400px;
+                width: 100%;
+                object-fit: cover;
             }
 
             .hero-buttons {
@@ -1540,24 +1480,10 @@
                 padding: 1.1rem 2.2rem;
             }
 
-            .hero-logo-large::before {
-                width: 280px;
-                height: 280px;
-            }
-
-            .hero-logo-large::after {
-                width: 320px;
-                height: 320px;
-            }
-
-            .hero-logo-large img {
-                height: 220px;
-                max-width: 350px;
-                padding: 2rem;
-            }
-
-            .hero-illustration {
-                font-size: 8rem;
+            .hero-image img {
+                max-height: 300px;
+                width: 100%;
+                object-fit: cover;
             }
 
             .features,
@@ -1637,6 +1563,9 @@
     <section class="hero" id="home">
         <div class="hero-grid"></div>
         <div class="hero-content">
+            <div class="hero-image">
+                <img src="{{ asset('robert-collins-tvc5imO5pXk-unsplash.jpg') }}" alt="Hero Image">
+            </div>
             <div class="hero-text">
                 <div class="hero-logo-container">
                     <img src="{{ asset('600-200_pp_gr_page-0001-removebg-preview.png') }}" alt="Inskola Logo">
@@ -1648,12 +1577,6 @@
                     <a href="#contact" class="btn-primary">{{ __('messages.hero.cta') }}</a>
                     <a href="#about" class="btn-secondary">{{ __('messages.hero.cta_secondary') }}</a>
                 </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-logo-large">
-                    <img src="{{ asset('600-200_pp_gr_page-0001-removebg-preview.png') }}" alt="Inskola Logo">
-                </div>
-                <div class="hero-illustration">🎓</div>
             </div>
         </div>
     </section>
