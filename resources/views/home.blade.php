@@ -1182,17 +1182,17 @@
 
             .nav-menu {
                 position: fixed;
-                top: 50%;
+                top: -100%;
                 left: 50%;
-                transform: translate(-50%, -50%) scale(0.8);
+                transform: translateX(-50%);
                 flex-direction: column;
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(20px);
                 width: 90%;
                 max-width: 400px;
-                max-height: 85vh;
+                max-height: 70vh;
                 text-align: {{ $isRTL ? 'right' : 'left' }};
-                transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 box-shadow: 
                     0 20px 60px rgba(0, 0, 0, 0.3),
                     0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -1201,9 +1201,11 @@
                 justify-content: flex-start;
                 z-index: 999;
                 pointer-events: none;
-                display: none;
+                display: flex;
                 margin: 0;
                 border-radius: 24px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
                 overflow-y: auto;
                 opacity: 0;
                 flex: 0 0 0 !important;
@@ -1211,16 +1213,54 @@
             }
 
             .nav-menu.active {
-                display: flex;
-                transform: translate(-50%, -50%) scale(1);
+                top: 12%;
                 opacity: 1;
                 pointer-events: auto;
+                transform: translateX(-50%) translateY(0);
+                animation: slideDownBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+
+            @keyframes slideDownBounce {
+                0% {
+                    top: -100%;
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(-20px);
+                }
+                60% {
+                    top: 12%;
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(5px);
+                }
+                80% {
+                    transform: translateX(-50%) translateY(-2px);
+                }
+                100% {
+                    top: 12%;
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(0);
+                }
             }
 
             .nav-menu li {
                 padding: 0.3rem 0;
                 width: 100%;
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
             }
+
+            .nav-menu.active li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-menu.active li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-menu.active li:nth-child(2) { transition-delay: 0.15s; }
+            .nav-menu.active li:nth-child(3) { transition-delay: 0.2s; }
+            .nav-menu.active li:nth-child(4) { transition-delay: 0.25s; }
+            .nav-menu.active li:nth-child(5) { transition-delay: 0.3s; }
+            .nav-menu.active li:nth-child(6) { transition-delay: 0.35s; }
+            .nav-menu.active li:nth-child(7) { transition-delay: 0.4s; }
 
             .nav-menu li a {
                 padding: 1.2rem 2rem;
@@ -1256,12 +1296,25 @@
                     cursor: pointer;
                     transition: all 0.3s ease;
                     z-index: 1000;
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+
+                .nav-menu.active .mobile-menu-close {
+                    opacity: 1;
+                    transform: scale(1);
+                    transition-delay: 0.2s;
                 }
             }
 
             .mobile-menu-close:hover {
                 background: rgba(24, 181, 150, 0.2);
-                transform: rotate(90deg);
+            }
+
+            @media (max-width: 992px) {
+                .nav-menu.active .mobile-menu-close:hover {
+                    transform: scale(1.1) rotate(90deg);
+                }
             }
 
             .mobile-menu-close::before,
