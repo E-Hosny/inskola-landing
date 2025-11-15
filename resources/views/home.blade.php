@@ -1871,7 +1871,7 @@
         <div class="hero-grid"></div>
         <div class="hero-content">
             <div class="hero-image">
-                <img src="{{ asset('robert-collins-tvc5imO5pXk-unsplash.jpg') }}" alt="Hero Image">
+                <img src="{{ asset('700x1000.png') }}" alt="Hero Image">
             </div>
             <div class="hero-text">
                 <div class="hero-logo-container">
