@@ -171,58 +171,62 @@
 
         .language-switcher {
             display: flex;
-            gap: 0.4rem;
+            gap: 0.3rem;
             background: var(--bg-light);
-            padding: 0.4rem;
-            border-radius: 50px;
-            border: 2px solid rgba(24, 181, 150, 0.15);
+            padding: 0.3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(24, 181, 150, 0.1);
         }
 
         .language-switcher a {
-            padding: 0.45rem 1rem;
-            border-radius: 50px;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
             text-decoration: none;
             color: var(--text-dark);
-            font-weight: 700;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
             white-space: nowrap;
         }
 
         .language-switcher a:hover {
-            background: rgba(24, 181, 150, 0.1);
+            background: rgba(24, 181, 150, 0.08);
             color: var(--primary-color);
         }
 
         .language-switcher a.active {
-            background: var(--gradient-primary);
+            background: var(--primary-color);
             color: var(--white);
-            box-shadow: 0 4px 12px rgba(24, 181, 150, 0.3);
+            box-shadow: 0 2px 6px rgba(24, 181, 150, 0.2);
         }
 
         .btn-primary {
-            background: var(--gradient-primary);
-            color: var(--white);
-            padding: 0.65rem 1.6rem;
-            border-radius: 50px;
+            background: var(--primary-color);
+            color: #ffffff !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
             border: none;
             white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(24, 181, 150, 0.25);
+            box-shadow: 0 2px 8px rgba(24, 181, 150, 0.2);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(24, 181, 150, 0.35);
+            background: #ffffff;
+            color: var(--primary-color) !important;
+            border: 1px solid var(--primary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(24, 181, 150, 0.3);
         }
 
         /* Desktop Menu Items - Visible on Desktop */
         .desktop-language-switcher,
         .desktop-register-btn {
             display: block;
+            margin: 0 0.5rem;
         }
 
         .desktop-language-switcher .language-switcher {
