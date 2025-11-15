@@ -81,7 +81,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.8rem 2rem;
+            padding: 0.5rem 2rem;
             position: relative;
         }
 
@@ -1309,7 +1309,7 @@
             }
 
             .nav-container {
-                padding: 1rem 2rem;
+                padding: 0.6rem 2rem;
                 position: relative;
                 z-index: 1000;
                 justify-content: space-between !important;
@@ -1671,7 +1671,7 @@
 
         @media (max-width: 768px) {
             .nav-container {
-                padding: 0.8rem 1.5rem;
+                padding: 0.5rem 1.5rem;
                 justify-content: space-between !important;
             }
 
