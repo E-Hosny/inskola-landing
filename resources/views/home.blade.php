@@ -195,13 +195,13 @@
         }
 
         .language-switcher a.active {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 50%, var(--primary-dark) 100%);
             color: var(--white);
             box-shadow: 0 2px 6px rgba(24, 181, 150, 0.2);
         }
 
         .btn-primary {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 50%, var(--primary-dark) 100%);
             color: #ffffff !important;
             padding: 0.5rem 1.2rem;
             border-radius: 8px;
