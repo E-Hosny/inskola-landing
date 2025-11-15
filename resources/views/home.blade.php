@@ -100,9 +100,9 @@
 
         .logo img {
             height: auto;
-            width: 350px;
-            max-width: 350px;
-            max-height: 52px;
+            width: auto;
+            max-width: none;
+            max-height: none;
             object-fit: contain;
             display: block;
             transition: all 0.3s ease;
@@ -118,8 +118,8 @@
             padding: 0;
             order: {{ $isRTL ? '1' : '2' }};
             flex: 1;
-            justify-content: {{ $isRTL ? 'flex-end' : 'flex-start' }};
-            margin-{{ $isRTL ? 'left' : 'right' }}: 2rem;
+            justify-content: {{ $isRTL ? 'flex-start' : 'flex-end' }};
+            margin-{{ $isRTL ? 'right' : 'left' }}: 2rem;
         }
 
         .nav-menu li {
@@ -219,9 +219,28 @@
             box-shadow: 0 8px 25px rgba(24, 181, 150, 0.35);
         }
 
+        /* Desktop Menu Items - Visible on Desktop */
+        .desktop-language-switcher,
+        .desktop-register-btn {
+            display: block;
+        }
+
+        .desktop-language-switcher .language-switcher {
+            margin: 0;
+        }
+
+        .desktop-register-btn .btn-primary {
+            margin: 0;
+        }
+
         /* Mobile Menu Items - Hidden on Desktop */
         .mobile-language-switcher,
         .mobile-register-btn {
+            display: none;
+        }
+
+        /* Hide nav-actions on desktop since items are now in nav-menu */
+        .nav-actions {
             display: none;
         }
 
@@ -1308,8 +1327,8 @@
 
             .logo img {
                 width: auto !important;
-                max-width: 330px;
-                max-height: 55px;
+                max-width: none;
+                max-height: none;
                 height: auto;
                 display: block;
             }
@@ -1526,6 +1545,12 @@
                 padding: 0 !important;
             }
 
+            /* Hide desktop menu items on mobile */
+            .desktop-language-switcher,
+            .desktop-register-btn {
+                display: none !important;
+            }
+
             /* Show mobile menu items */
             .mobile-language-switcher,
             .mobile-register-btn {
@@ -1657,8 +1682,8 @@
 
             .logo img {
                 width: auto;
-                max-width: 300px;
-                max-height: 50px;
+                max-width: none;
+                max-height: none;
                 height: auto;
             }
 
@@ -1829,7 +1854,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="{{ asset('600-200_pp_wh_page-0001-removebg-preview (2).png') }}" alt="Inskola Logo" style="display: block; width: 350px; max-width: 350px; max-height: 52px; height: auto;">
+                <img src="{{ asset('Untitled (1).png') }}" alt="Inskola Logo">
             </a>
             
             <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
@@ -1839,6 +1864,15 @@
                 <li><a href="#subjects">{{ __('messages.nav.subjects') }}</a></li>
                 <li><a href="#about">{{ __('messages.nav.about') }}</a></li>
                 <li><a href="#contact">{{ __('messages.nav.contact') }}</a></li>
+                <li class="desktop-language-switcher">
+                    <div class="language-switcher">
+                        <a href="{{ route('language.switch', 'ar') }}" class="{{ $locale === 'ar' ? 'active' : '' }}">العربية</a>
+                        <a href="{{ route('language.switch', 'en') }}" class="{{ $locale === 'en' ? 'active' : '' }}">English</a>
+                    </div>
+                </li>
+                <li class="desktop-register-btn">
+                    <a href="#contact" class="btn-primary">{{ __('messages.nav.register') }}</a>
+                </li>
                 <li class="mobile-language-switcher">
                     <div class="language-switcher">
                         <a href="{{ route('language.switch', 'ar') }}" class="{{ $locale === 'ar' ? 'active' : '' }}">العربية</a>
@@ -1849,14 +1883,6 @@
                     <a href="#contact" class="btn-primary mobile-btn">{{ __('messages.nav.register') }}</a>
                 </li>
             </ul>
-
-            <div class="nav-actions" id="navActions">
-                <div class="language-switcher">
-                    <a href="{{ route('language.switch', 'ar') }}" class="{{ $locale === 'ar' ? 'active' : '' }}">العربية</a>
-                    <a href="{{ route('language.switch', 'en') }}" class="{{ $locale === 'en' ? 'active' : '' }}">English</a>
-                </div>
-                <a href="#contact" class="btn-primary">{{ __('messages.nav.register') }}</a>
-            </div>
 
             <div class="hamburger" id="hamburger">
                 <span></span>
