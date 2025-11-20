@@ -101,8 +101,8 @@
         .logo img {
             height: auto;
             width: auto;
-            max-width: none;
-            max-height: none;
+            max-width: 280px;
+            max-height: 45px;
             object-fit: contain;
             display: block;
             transition: all 0.3s ease;
@@ -1331,8 +1331,8 @@
 
             .logo img {
                 width: auto !important;
-                max-width: none;
-                max-height: none;
+                max-width: 260px;
+                max-height: 42px;
                 height: auto;
                 display: block;
             }
@@ -1686,8 +1686,8 @@
 
             .logo img {
                 width: auto;
-                max-width: none;
-                max-height: none;
+                max-width: 240px;
+                max-height: 40px;
                 height: auto;
             }
 
@@ -1858,7 +1858,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="{{ asset('Untitled (1).png') }}" alt="Inskola Logo">
+                <img src="{{ asset('200-600 out icon gr -- EH.png') }}" alt="Inskola Logo">
             </a>
             
             <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
