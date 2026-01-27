@@ -1083,6 +1083,96 @@
             font-size: 0.8rem;
         }
 
+        /* Contact Info Styles */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1.5px solid rgba(24, 181, 150, 0.1);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-align: {{ $isRTL ? 'right' : 'left' }};
+            width: 100%;
+            justify-content: center;
+            flex-direction: {{ $isRTL ? 'row-reverse' : 'row' }};
+        }
+
+        .contact-info-item .icon {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            filter: drop-shadow(0 2px 8px rgba(37, 211, 102, 0.3));
+        }
+
+        .contact-info-item .icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .contact-info-item .content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .contact-info-item .phone-number {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            direction: ltr;
+            display: inline-block;
+            unicode-bidi: bidi-override;
+        }
+
+        .contact-info-item .phone-number:hover {
+            color: var(--primary-color);
+        }
+
+        .whatsapp-button {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--white);
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            border: 2px solid transparent;
+        }
+
+        .whatsapp-button:hover {
+            background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-button .icon {
+            font-size: 1.4rem;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
@@ -1218,6 +1308,39 @@
         .footer-section a:hover::before {
             opacity: 1;
             {{ $isRTL ? 'right' : 'left' }}: 0;
+        }
+
+        .footer-phone-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-direction: {{ $isRTL ? 'row' : 'row-reverse' }};
+            line-height: 1;
+        }
+
+        .footer-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+
+        .footer-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #25D366;
+            display: block;
+        }
+
+        .footer-phone-number {
+            direction: ltr;
+            display: inline-block;
+            unicode-bidi: bidi-override;
+            line-height: 1.5;
+            vertical-align: middle;
         }
 
         .footer-bottom {
@@ -1774,6 +1897,23 @@
                 padding: 1.3rem 1.2rem;
             }
 
+            .contact-info {
+                padding: 1.2rem 1rem;
+                gap: 1.2rem;
+            }
+
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .whatsapp-button {
+                width: 100%;
+                justify-content: center;
+                padding: 0.9rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
             .form-group {
                 margin-bottom: 0.9rem;
             }
@@ -2028,6 +2168,24 @@
                 <p>{{ __('messages.contact.subtitle') }}</p>
             </div>
 
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="contact-info-item">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <a href="tel:+966554966258" class="phone-number">966 55 496 6258</a>
+                    </div>
+                </div>
+                <a href="https://wa.me/966554966258" target="_blank" class="whatsapp-button">
+                    <span class="icon">💬</span>
+                    <span>{{ $locale === 'ar' ? 'تواصل معنا عبر واتساب' : 'Contact us on WhatsApp' }}</span>
+                </a>
+            </div>
+
             <form class="contact-form" action="{{ route('contact.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -2080,10 +2238,17 @@
                 <a href="#contact">{{ __('messages.nav.contact') }}</a>
             </div>
             <div class="footer-section">
-                <h3>{{ __('messages.footer.support') }}</h3>
-                <a href="#">{{ __('messages.footer.privacy') }}</a>
-                <a href="#">{{ __('messages.footer.terms') }}</a>
-                <a href="#">{{ __('messages.footer.support') }}</a>
+                <h3>{{ $locale === 'ar' ? 'تواصل معنا' : 'Contact Us' }}</h3>
+                <a href="tel:+966554966258" class="footer-phone-link">
+                    <span class="footer-phone-number">966 55 496 6258</span>
+                    <span class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://wa.me/966554966258" target="_blank">💬 {{ $locale === 'ar' ? 'واتساب' : 'WhatsApp' }}</a>
+                <a href="#contact">{{ __('messages.nav.contact') }}</a>
             </div>
         </div>
         <div class="footer-bottom">

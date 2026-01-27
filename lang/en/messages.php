@@ -11,8 +11,8 @@ return [
     ],
     'hero' => [
         'title' => 'Your Learning Journey Starts Here',
-        'subtitle' => 'Interactive and Innovative Learning Platform for Primary Education',
-        'description' => 'We make learning fun and engaging for your children with interactive lessons and outstanding educational content',
+        'subtitle' => 'Interactive and Innovative E-Learning Platform',
+        'description' => 'We make learning fun and engaging with interactive lessons and outstanding educational content',
         'cta' => 'Start Learning Free',
         'cta_secondary' => 'Watch Demo Video',
     ],
@@ -21,11 +21,11 @@ return [
         'subtitle' => 'We provide a comprehensive and excellent learning experience',
         'interactive_lessons' => [
             'title' => 'Interactive Lessons',
-            'description' => 'Educational content designed specifically for children with fun games and activities that make learning easier.',
+            'description' => 'Carefully designed educational content with fun games and activities that make learning easier and more enjoyable.',
         ],
         'track_progress' => [
             'title' => 'Track Progress',
-            'description' => 'Follow your child\'s academic development with detailed reports and accurate statistics for each subject.',
+            'description' => 'Follow your academic development with detailed reports and accurate statistics for each subject.',
         ],
         'certified_teachers' => [
             'title' => 'Certified Teachers',
@@ -33,7 +33,7 @@ return [
         ],
         'safe_environment' => [
             'title' => 'Safe Environment',
-            'description' => 'A completely safe platform for children with parental controls and full privacy protection.',
+            'description' => 'A completely safe platform with advanced privacy settings and full data protection.',
         ],
         'curriculum_aligned' => [
             'title' => 'Curriculum Aligned',
@@ -77,7 +77,7 @@ return [
         'terms' => 'Terms & Conditions',
         'support' => 'Technical Support',
         'copyright' => '© 2025 Inskola. All rights reserved',
-        'description' => 'Leading educational platform for primary education',
+        'description' => 'Leading e-learning platform',
     ],
 ];
 
