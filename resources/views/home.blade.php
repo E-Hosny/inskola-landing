@@ -582,8 +582,8 @@
 
         /* Features Section */
         .features {
-            padding: 60px 2rem;
-            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+            padding: 70px 2rem;
+            background: var(--white);
             position: relative;
         }
 
@@ -780,8 +780,8 @@
 
         /* Subjects Section */
         .subjects {
-            padding: 60px 2rem;
-            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+            padding: 70px 2rem;
+            background: linear-gradient(180deg, #f7faf9 0%, #eef7f4 50%, #f7faf9 100%);
             position: relative;
         }
 
@@ -910,9 +910,133 @@
             transform: translateY(-2px);
         }
 
+        /* Pricing Section */
+        .pricing {
+            padding: 70px 2rem;
+            background: linear-gradient(165deg, #0f7669 0%, #18b596 42%, #20d4ae 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 10% 20%, rgba(255, 255, 255, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 50% at 90% 80%, rgba(0, 0, 0, 0.12) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pricing .section-header h2,
+        .pricing .section-header p {
+            color: var(--white);
+        }
+
+        .pricing .section-header h2::after {
+            background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.2) 100%);
+        }
+
+        .pricing .section-header p {
+            opacity: 0.9;
+        }
+
+        .pricing-panel {
+            max-width: 520px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+        }
+
+        .pricing-amount {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0 0.4rem;
+            flex-direction: {{ $isRTL ? 'row-reverse' : 'row' }};
+        }
+
+        .pricing-amount .value {
+            font-size: 4.2rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.04em;
+        }
+
+        .pricing-amount .currency {
+            font-size: 1.35rem;
+            font-weight: 700;
+            opacity: 0.95;
+        }
+
+        .pricing-unit {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            opacity: 0.95;
+        }
+
+        .pricing-note {
+            font-size: 0.92rem;
+            opacity: 0.88;
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+        }
+
+        .pricing-includes {
+            list-style: none;
+            text-align: {{ $isRTL ? 'right' : 'left' }};
+            max-width: 360px;
+            margin: 0 auto 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .pricing-includes li {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.92rem;
+            font-weight: 500;
+            flex-direction: {{ $isRTL ? 'row-reverse' : 'row' }};
+        }
+
+        .pricing-includes li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--white);
+            flex-shrink: 0;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+        }
+
+        .pricing-cta {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary-dark);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+            color: var(--primary-color);
+        }
+
         /* Contact Section */
         .contact {
-            padding: 45px 2rem;
+            padding: 70px 2rem;
             background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
             position: relative;
         }
@@ -1171,6 +1295,49 @@
 
         .whatsapp-button .icon {
             font-size: 1.4rem;
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            {{ $isRTL ? 'left' : 'right' }}: 24px;
+            z-index: 9999;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-3px) scale(1.06);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+        }
+
+        .whatsapp-float::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            animation: waPulse 2s infinite;
+            border: 2px solid rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes waPulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.45); opacity: 0; }
         }
 
         /* Footer */
@@ -1864,8 +2031,21 @@
 
             .features,
             .subjects,
+            .pricing,
             .contact {
                 padding: 60px 1rem;
+            }
+
+            .pricing-amount .value {
+                font-size: 3.4rem;
+            }
+
+            .pricing-amount .currency {
+                font-size: 1.15rem;
+            }
+
+            .pricing-includes {
+                max-width: 100%;
             }
 
             .section-header {
@@ -1912,6 +2092,13 @@
                 justify-content: center;
                 padding: 0.9rem 1.5rem;
                 font-size: 0.85rem;
+            }
+
+            .whatsapp-float {
+                width: 54px;
+                height: 54px;
+                bottom: 18px;
+                {{ $isRTL ? 'left' : 'right' }}: 16px;
             }
 
             .form-group {
@@ -2005,8 +2192,9 @@
             <ul class="nav-menu" id="navMenu">
                 <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu"></button>
                 <li><a href="#home">{{ __('messages.nav.home') }}</a></li>
-                <li><a href="#subjects">{{ __('messages.nav.subjects') }}</a></li>
                 <li><a href="#about">{{ __('messages.nav.about') }}</a></li>
+                <li><a href="#subjects">{{ __('messages.nav.subjects') }}</a></li>
+                <li><a href="#pricing">{{ __('messages.nav.pricing') }}</a></li>
                 <li><a href="#contact">{{ __('messages.nav.contact') }}</a></li>
                 <li class="desktop-language-switcher">
                     <div class="language-switcher">
@@ -2041,7 +2229,7 @@
         <div class="hero-grid"></div>
         <div class="hero-content">
             <div class="hero-image">
-                <img src="{{ asset('700x1000.png') }}" alt="Hero Image">
+                <img src="{{ asset('studentimg.jpeg') }}" alt="Hero Image">
             </div>
             <div class="hero-text">
                 <div class="hero-logo-container">
@@ -2051,8 +2239,8 @@
                 <h2>{{ __('messages.hero.subtitle') }}</h2>
                 <p>{{ __('messages.hero.description') }}</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">{{ __('messages.hero.cta') }}</a>
-                    <a href="#about" class="btn-secondary">{{ __('messages.hero.cta_secondary') }}</a>
+                    <a href="#pricing" class="btn-primary">{{ __('messages.hero.cta') }}</a>
+                    <a href="#subjects" class="btn-secondary">{{ __('messages.hero.cta_secondary') }}</a>
                 </div>
             </div>
         </div>
@@ -2160,6 +2348,30 @@
         </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>{{ __('messages.pricing.title') }}</h2>
+                <p>{{ __('messages.pricing.subtitle') }}</p>
+            </div>
+            <div class="pricing-panel">
+                <div class="pricing-amount">
+                    <span class="value">{{ __('messages.pricing.amount') }}</span>
+                    <span class="currency">{{ __('messages.pricing.currency') }}</span>
+                </div>
+                <p class="pricing-unit">{{ __('messages.pricing.unit') }}</p>
+                <p class="pricing-note">{{ __('messages.pricing.note') }}</p>
+                <ul class="pricing-includes" aria-label="{{ __('messages.pricing.includes_title') }}">
+                    <li>{{ __('messages.pricing.include_1') }}</li>
+                    <li>{{ __('messages.pricing.include_2') }}</li>
+                    <li>{{ __('messages.pricing.include_3') }}</li>
+                </ul>
+                <a href="#contact" class="pricing-cta">{{ __('messages.pricing.cta') }}</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="contact-container">
@@ -2182,7 +2394,7 @@
                 </div>
                 <a href="https://wa.me/966554966258" target="_blank" class="whatsapp-button">
                     <span class="icon">💬</span>
-                    <span>{{ $locale === 'ar' ? 'تواصل معنا عبر واتساب' : 'Contact us on WhatsApp' }}</span>
+                    <span>{{ __('messages.contact.whatsapp') }}</span>
                 </a>
             </div>
 
@@ -2235,10 +2447,11 @@
                 <h3>{{ __('messages.footer.about_us') }}</h3>
                 <a href="#about">{{ __('messages.nav.about') }}</a>
                 <a href="#subjects">{{ __('messages.nav.subjects') }}</a>
+                <a href="#pricing">{{ __('messages.nav.pricing') }}</a>
                 <a href="#contact">{{ __('messages.nav.contact') }}</a>
             </div>
             <div class="footer-section">
-                <h3>{{ $locale === 'ar' ? 'تواصل معنا' : 'Contact Us' }}</h3>
+                <h3>{{ __('messages.nav.contact') }}</h3>
                 <a href="tel:+966554966258" class="footer-phone-link">
                     <span class="footer-phone-number">966 55 496 6258</span>
                     <span class="footer-icon">
@@ -2247,7 +2460,10 @@
                         </svg>
                     </span>
                 </a>
-                <a href="https://wa.me/966554966258" target="_blank">💬 {{ $locale === 'ar' ? 'واتساب' : 'WhatsApp' }}</a>
+                <a href="https://wa.me/966554966258" target="_blank" rel="noopener noreferrer">💬 {{ $locale === 'ar' ? 'واتساب' : 'WhatsApp' }}</a>
+                <a href="{{ route('terms') }}">{{ __('messages.footer.terms') }}</a>
+                <a href="{{ route('terms') }}#privacy">{{ __('messages.footer.privacy') }}</a>
+                <a href="{{ route('terms') }}#refund">{{ $locale === 'ar' ? 'سياسة الاسترجاع' : 'Refund Policy' }}</a>
                 <a href="#contact">{{ __('messages.nav.contact') }}</a>
             </div>
         </div>
@@ -2255,6 +2471,12 @@
             <p>{{ __('messages.footer.copyright') }}</p>
         </div>
     </footer>
+
+    <a href="https://wa.me/966554966258" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="{{ __('messages.whatsapp_float.label') }}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
 
     <script>
         // Hamburger Menu Toggle
@@ -2376,13 +2598,13 @@
                         showSuccessMessage(data.message);
                         this.reset();
                     } else {
-                        showSuccessMessage('{{ $locale === "ar" ? "تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا، سنرد عليك في أقرب وقت ممكن." : "Your message has been sent successfully! Thank you for contacting us, we will get back to you as soon as possible." }}');
+                        showSuccessMessage(@json(__('messages.contact.success')));
                         this.reset();
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    showSuccessMessage('{{ $locale === "ar" ? "تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا، سنرد عليك في أقرب وقت ممكن." : "Your message has been sent successfully! Thank you for contacting us, we will get back to you as soon as possible." }}');
+                    showSuccessMessage(@json(__('messages.contact.success')));
                     this.reset();
                 })
                 .finally(() => {

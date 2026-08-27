@@ -11,17 +11,27 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Set locale from session or use default (Arabic)
+        $this->setLocale();
+
+        return view('home');
+    }
+
+    public function terms()
+    {
+        $this->setLocale();
+
+        return view('terms');
+    }
+
+    private function setLocale(): void
+    {
         $locale = Session::get('locale', 'ar');
-        
-        // If no locale in session, set Arabic as default
+
         if (!Session::has('locale')) {
             Session::put('locale', 'ar');
         }
-        
+
         App::setLocale($locale);
-        
-        return view('home');
     }
 
     public function switchLanguage($locale)
