@@ -2462,8 +2462,8 @@
                 </a>
                 <a href="https://wa.me/966554966258" target="_blank" rel="noopener noreferrer">💬 {{ $locale === 'ar' ? 'واتساب' : 'WhatsApp' }}</a>
                 <a href="{{ route('terms') }}">{{ __('messages.footer.terms') }}</a>
-                <a href="{{ route('terms') }}#privacy">{{ __('messages.footer.privacy') }}</a>
-                <a href="{{ route('terms') }}#refund">{{ $locale === 'ar' ? 'سياسة الاسترجاع' : 'Refund Policy' }}</a>
+                <a href="{{ route('privacy') }}">{{ __('messages.footer.privacy') }}</a>
+                <a href="{{ route('refund') }}">{{ __('messages.footer.refund') }}</a>
                 <a href="#contact">{{ __('messages.nav.contact') }}</a>
             </div>
         </div>

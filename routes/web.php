@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
+Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
+Route::get('/refund-policy', [HomeController::class, 'refundPolicy'])->name('refund');
 Route::post('/contact', [HomeController::class, 'storeContact'])->name('contact.store');
 Route::get('/language/{locale}', [HomeController::class, 'switchLanguage'])->name('language.switch');
 

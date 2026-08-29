@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>{{ __('messages.terms_page.title') }} - إنسكولا</title>
+    <title>@yield('title') - إنسكولا</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@
         :root {
             --primary-color: #18b596;
             --primary-dark: #149479;
-            --primary-light: #20d4ae;
             --text-dark: #2c3e50;
             --text-light: #6c757d;
             --bg-light: #f8f9fa;
@@ -23,11 +22,7 @@
             --gradient-primary: linear-gradient(135deg, #18b596 0%, #149479 50%, #20d4ae 100%);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: {{ $isRTL ? "'Cairo', 'Segoe UI', sans-serif" : "'Poppins', 'Segoe UI', sans-serif" }};
@@ -135,7 +130,7 @@
             font-size: 0.95rem;
         }
 
-        .toc {
+        .legal-nav {
             max-width: 860px;
             margin: 0 auto 1.5rem;
             padding: 0 1.5rem;
@@ -145,19 +140,20 @@
             justify-content: center;
         }
 
-        .toc a {
+        .legal-nav a {
             text-decoration: none;
             color: var(--primary-dark);
             background: rgba(24, 181, 150, 0.08);
             border: 1px solid rgba(24, 181, 150, 0.18);
-            padding: 0.4rem 0.85rem;
+            padding: 0.45rem 0.95rem;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 600;
             transition: all 0.25s ease;
         }
 
-        .toc a:hover {
+        .legal-nav a:hover,
+        .legal-nav a.active {
             background: var(--primary-color);
             color: var(--white);
             border-color: var(--primary-color);
@@ -253,7 +249,6 @@
         }
 
         @media (max-width: 600px) {
-            .btn-home span { display: none; }
             .terms-section { padding: 1.25rem 1rem; }
             .whatsapp-float {
                 width: 54px;
@@ -275,69 +270,24 @@
                     <a href="{{ route('language.switch', 'ar') }}" class="{{ $locale === 'ar' ? 'active' : '' }}">العربية</a>
                     <a href="{{ route('language.switch', 'en') }}" class="{{ $locale === 'en' ? 'active' : '' }}">English</a>
                 </div>
-                <a href="{{ route('home') }}" class="btn-home">{{ __('messages.terms_page.back_home') }}</a>
+                <a href="{{ route('home') }}" class="btn-home">{{ __('messages.legal.back_home') }}</a>
             </div>
         </div>
     </nav>
 
     <header class="page-hero">
-        <h1>{{ __('messages.terms_page.title') }}</h1>
-        <p>{{ __('messages.terms_page.subtitle') }}</p>
+        <h1>@yield('page_title')</h1>
+        <p>@yield('page_subtitle')</p>
     </header>
 
-    <nav class="toc" aria-label="{{ __('messages.terms_page.title') }}">
-        <a href="#terms">{{ __('messages.terms_page.section_1_title') }}</a>
-        <a href="#attendance">{{ __('messages.terms_page.section_2_title') }}</a>
-        <a href="#refund">{{ __('messages.terms_page.section_3_title') }}</a>
-        <a href="#privacy">{{ __('messages.terms_page.section_4_title') }}</a>
-        <a href="#general">{{ __('messages.terms_page.section_5_title') }}</a>
+    <nav class="legal-nav" aria-label="{{ __('messages.legal.nav_label') }}">
+        <a href="{{ route('terms') }}" class="{{ ($activePage ?? '') === 'terms' ? 'active' : '' }}">{{ __('messages.legal.nav_terms') }}</a>
+        <a href="{{ route('privacy') }}" class="{{ ($activePage ?? '') === 'privacy' ? 'active' : '' }}">{{ __('messages.legal.nav_privacy') }}</a>
+        <a href="{{ route('refund') }}" class="{{ ($activePage ?? '') === 'refund' ? 'active' : '' }}">{{ __('messages.legal.nav_refund') }}</a>
     </nav>
 
     <main class="terms-container">
-        <section class="terms-section" id="terms">
-            <h2>{{ __('messages.terms_page.section_1_title') }}</h2>
-            <ol>
-                @foreach(__('messages.terms_page.section_1') as $item)
-                    <li>{{ $item }}</li>
-                @endforeach
-            </ol>
-        </section>
-
-        <section class="terms-section" id="attendance">
-            <h2>{{ __('messages.terms_page.section_2_title') }}</h2>
-            <ol>
-                @foreach(__('messages.terms_page.section_2') as $item)
-                    <li>{{ $item }}</li>
-                @endforeach
-            </ol>
-        </section>
-
-        <section class="terms-section" id="refund">
-            <h2>{{ __('messages.terms_page.section_3_title') }}</h2>
-            <ol>
-                @foreach(__('messages.terms_page.section_3') as $item)
-                    <li>{{ $item }}</li>
-                @endforeach
-            </ol>
-        </section>
-
-        <section class="terms-section" id="privacy">
-            <h2>{{ __('messages.terms_page.section_4_title') }}</h2>
-            <ol>
-                @foreach(__('messages.terms_page.section_4') as $item)
-                    <li>{{ $item }}</li>
-                @endforeach
-            </ol>
-        </section>
-
-        <section class="terms-section" id="general">
-            <h2>{{ __('messages.terms_page.section_5_title') }}</h2>
-            <ol>
-                @foreach(__('messages.terms_page.section_5') as $item)
-                    <li>{{ $item }}</li>
-                @endforeach
-            </ol>
-        </section>
+        @yield('content')
     </main>
 
     <footer>

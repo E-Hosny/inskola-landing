@@ -93,48 +93,71 @@ return [
         'about_us' => 'Quick Links',
         'privacy' => 'Privacy Policy',
         'terms' => 'Terms & Conditions',
+        'refund' => 'Refund Policy',
         'support' => 'Support',
         'copyright' => '© 2025 Inskola. All rights reserved',
         'description' => 'Online private lessons aligned with the Saudi Ministry of Education curriculum.',
     ],
-    'terms_page' => [
-        'title' => 'Terms & Conditions, Privacy Policy, and Refund Policy',
-        'subtitle' => 'Please read this document carefully before using the InSkola Academy platform',
+    'legal' => [
         'back_home' => 'Back to Home',
-        'section_1_title' => '1. Terms & Conditions',
-        'section_1' => [
-            'By using the InSkola Academy platform, the user agrees to all terms and conditions stated in this document.',
-            'The platform commits to providing remote educational services according to the agreed schedules.',
-            'The student and guardian must provide a suitable environment for the lesson and a stable internet connection.',
-            'The student must attend the lesson at the scheduled time.',
+        'nav_label' => 'Legal Pages',
+        'nav_terms' => 'Terms & Conditions',
+        'nav_privacy' => 'Privacy Policy',
+        'nav_refund' => 'Refund Policy',
+    ],
+    'terms_page' => [
+        'title' => 'Terms & Conditions',
+        'subtitle' => 'Please read these terms carefully before using the InSkola Academy platform',
+        'sections' => [
+            [
+                'title' => 'Terms & Conditions',
+                'items' => [
+                    'By using the InSkola Academy platform, the user agrees to all terms and conditions stated in this document.',
+                    'The platform commits to providing remote educational services according to the agreed schedules.',
+                    'The student and guardian must provide a suitable environment for the lesson and a stable internet connection.',
+                    'The student must attend the lesson at the scheduled time.',
+                ],
+            ],
+            [
+                'title' => 'Attendance and Cancellation Policy',
+                'items' => [
+                    'The student may request to postpone or reschedule a lesson by notifying the platform at least 6 hours before the lesson time.',
+                    'If cancellation is made before the required notice period, the lesson will be rescheduled based on available times.',
+                    'If the student is absent or cancels after the lesson starts, or less than 6 hours before it, the lesson is considered consumed and no compensation is due, except in emergency cases approved by the platform administration.',
+                    'If the student arrives late, only the remaining lesson time will be counted.',
+                    'If the lesson cannot be held due to the platform or the teacher, the student will be compensated with a replacement lesson.',
+                ],
+            ],
+            [
+                'title' => 'General Provisions',
+                'items' => [
+                    'These terms and this agreement are subject to the laws of the Kingdom of Saudi Arabia and the principles of Islamic Sharia.',
+                    'The platform may update these terms and policies at any time and publish the updated version through the platform or official communication channels.',
+                    'Continued use of the platform after updates are published constitutes acceptance of them.',
+                ],
+            ],
         ],
-        'section_2_title' => '2. Attendance and Cancellation Policy',
-        'section_2' => [
-            'The student may request to postpone or reschedule a lesson by notifying the platform at least 6 hours before the lesson time.',
-            'If cancellation is made before the required notice period, the lesson will be rescheduled based on available times.',
-            'If the student is absent or cancels after the lesson starts, or less than 6 hours before it, the lesson is considered consumed and no compensation is due, except in emergency cases approved by the platform administration.',
-            'If the student arrives late, only the remaining lesson time will be counted.',
-            'If the lesson cannot be held due to the platform or the teacher, the student will be compensated with a replacement lesson.',
-        ],
-        'section_3_title' => '3. Refund Policy',
-        'section_3' => [
-            'The customer may request a refund only before the first lesson begins.',
-            'After the service starts or any lesson is attended, the value of completed lessons cannot be refunded.',
-            'The value of completed lessons will be calculated and deducted before any remaining amount is refunded.',
-            'Refund requests are processed within no more than 14 business days.',
-        ],
-        'section_4_title' => '4. Privacy Policy',
-        'section_4' => [
+    ],
+    'privacy_page' => [
+        'title' => 'Privacy Policy',
+        'subtitle' => 'How we handle user data on the InSkola Academy platform',
+        'section_title' => 'Privacy Policy',
+        'items' => [
             'The platform is committed to keeping user data confidential and not sharing it with any third party except as required by applicable regulations.',
             'Data is used only for providing educational services and communicating with the student and guardian.',
             'The platform may send notifications related to attendance, assignments, assessments, and the services provided.',
             'Data is stored using secure means to protect it from unauthorized access.',
         ],
-        'section_5_title' => '5. General Provisions',
-        'section_5' => [
-            'These terms and this agreement are subject to the laws of the Kingdom of Saudi Arabia and the principles of Islamic Sharia.',
-            'The platform may update these terms and policies at any time and publish the updated version through the platform or official communication channels.',
-            'Continued use of the platform after updates are published constitutes acceptance of them.',
+    ],
+    'refund_page' => [
+        'title' => 'Refund Policy',
+        'subtitle' => 'Terms and procedures for refunds on the InSkola Academy platform',
+        'section_title' => 'Refund Policy',
+        'items' => [
+            'The customer may request a refund only before the first lesson begins.',
+            'After the service starts or any lesson is attended, the value of completed lessons cannot be refunded.',
+            'The value of completed lessons will be calculated and deducted before any remaining amount is refunded.',
+            'Refund requests are processed within no more than 14 business days.',
         ],
     ],
 ];

@@ -20,7 +20,21 @@ class HomeController extends Controller
     {
         $this->setLocale();
 
-        return view('terms');
+        return view('legal.terms', ['activePage' => 'terms']);
+    }
+
+    public function privacy()
+    {
+        $this->setLocale();
+
+        return view('legal.privacy', ['activePage' => 'privacy']);
+    }
+
+    public function refundPolicy()
+    {
+        $this->setLocale();
+
+        return view('legal.refund-policy', ['activePage' => 'refund']);
     }
 
     private function setLocale(): void
