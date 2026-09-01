@@ -17,6 +17,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminController::class, 'login']);
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/contacts', [AdminController::class, 'index'])->name('admin.contacts')->middleware('auth');
+    Route::patch('/contacts/{contact}', [AdminController::class, 'update'])->name('admin.contacts.update')->middleware('auth');
+    Route::delete('/contacts/{contact}', [AdminController::class, 'destroy'])->name('admin.contacts.destroy')->middleware('auth');
 });
 
 // Redirect 'login' route to admin login (for auth middleware)

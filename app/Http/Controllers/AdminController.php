@@ -81,4 +81,34 @@ class AdminController extends Controller
         
         return view('admin.contacts', compact('contacts', 'locale'));
     }
+
+    public function update(Request $request, Contact $contact)
+    {
+        $validated = $request->validate([
+            'admin_note' => 'nullable|string|max:2000',
+            'is_marked' => 'nullable|boolean',
+        ]);
+
+        $contact->update([
+            'admin_note' => $validated['admin_note'] ?? null,
+            'is_marked' => $request->boolean('is_marked'),
+        ]);
+
+        $locale = Session::get('locale', 'ar');
+
+        return back()->with('success', $locale === 'ar'
+            ? 'تم تحديث الرسالة بنجاح.'
+            : 'Message updated successfully.');
+    }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+
+        $locale = Session::get('locale', 'ar');
+
+        return back()->with('success', $locale === 'ar'
+            ? 'تم حذف الرسالة بنجاح.'
+            : 'Message deleted successfully.');
+    }
 }

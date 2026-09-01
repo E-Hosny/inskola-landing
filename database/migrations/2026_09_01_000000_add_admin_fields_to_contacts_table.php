@@ -1,0 +1,23 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->boolean('is_marked')->default(false)->after('message');
+            $table->text('admin_note')->nullable()->after('is_marked');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->dropColumn(['is_marked', 'admin_note']);
+        });
+    }
+};

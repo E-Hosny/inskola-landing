@@ -9,7 +9,13 @@ class Contact extends Model
     protected $fillable = [
         'name',
         'phone',
-        'message'
+        'message',
+        'is_marked',
+        'admin_note',
+    ];
+
+    protected $casts = [
+        'is_marked' => 'boolean',
     ];
 }
 
