@@ -1,6 +1,7 @@
 @extends('layouts.legal')
 
 @section('title', __('messages.privacy_page.title'))
+@section('seo_description', __('messages.privacy_page.subtitle'))
 @section('page_title', __('messages.privacy_page.title'))
 @section('page_subtitle', __('messages.privacy_page.subtitle'))
 

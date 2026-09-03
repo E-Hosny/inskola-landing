@@ -8,7 +8,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>إنسكولا - {{ __('messages.hero.subtitle') }}</title>
+    @php
+        $seoTitle = config('seo.default_title.' . $locale);
+        $seoDescription = config('seo.default_description.' . $locale);
+        $seoKeywords = config('seo.default_keywords.' . $locale);
+        $seoCanonical = route('home');
+        $seoType = 'website';
+        $seoImage = asset(config('seo.og_image'));
+        $faqEntities = collect(__('messages.seo.faq'))->map(function ($item) {
+            return [
+                '@type' => 'Question',
+                'name' => $item['question'],
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => $item['answer'],
+                ],
+            ];
+        })->values()->all();
+        $seoJsonLd = [
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'EducationalOrganization',
+                'name' => config('seo.organization.name'),
+                'alternateName' => config('seo.organization.alternate_name'),
+                'url' => route('home'),
+                'logo' => asset('200-600 out icon gr -- EH.png'),
+                'image' => $seoImage,
+                'description' => $seoDescription,
+                'telephone' => config('seo.phone'),
+                'address' => [
+                    '@type' => 'PostalAddress',
+                    'addressCountry' => config('seo.organization.address_country'),
+                    'addressLocality' => config('seo.organization.address_locality'),
+                ],
+                'areaServed' => [
+                    '@type' => 'Country',
+                    'name' => 'Saudi Arabia',
+                ],
+            ],
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'WebSite',
+                'name' => config('seo.site_name.' . $locale),
+                'url' => route('home'),
+                'inLanguage' => $locale === 'ar' ? 'ar-SA' : 'en-US',
+                'potentialAction' => [
+                    '@type' => 'CommunicateAction',
+                    'target' => route('home') . '#contact',
+                ],
+            ],
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'FAQPage',
+                'mainEntity' => $faqEntities,
+            ],
+        ];
+    @endphp
+    @include('partials.seo')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -1736,6 +1792,8 @@
             .nav-menu.active li:nth-child(5) { transition-delay: 0.3s; }
             .nav-menu.active li:nth-child(6) { transition-delay: 0.35s; }
             .nav-menu.active li:nth-child(7) { transition-delay: 0.4s; }
+            .nav-menu.active li:nth-child(8) { transition-delay: 0.45s; }
+            .nav-menu.active li:nth-child(9) { transition-delay: 0.5s; }
 
             .nav-menu li a {
                 padding: 0.5rem 1rem;
@@ -2185,7 +2243,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="{{ asset('200-600 out icon gr -- EH.png') }}" alt="Inskola Logo">
+                <img src="{{ asset('200-600 out icon gr -- EH.png') }}" alt="{{ $isRTL ? 'شعار إنسكولا - حصص خصوصية أونلاين' : 'Inskola logo - online private tutoring' }}">
             </a>
             
             <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
@@ -2195,6 +2253,7 @@
                 <li><a href="#about">{{ __('messages.nav.about') }}</a></li>
                 <li><a href="#subjects">{{ __('messages.nav.subjects') }}</a></li>
                 <li><a href="#pricing">{{ __('messages.nav.pricing') }}</a></li>
+                <li><a href="{{ route('blog.index') }}">{{ __('messages.nav.blog') }}</a></li>
                 <li><a href="#contact">{{ __('messages.nav.contact') }}</a></li>
                 <li class="desktop-language-switcher">
                     <div class="language-switcher">
@@ -2229,11 +2288,11 @@
         <div class="hero-grid"></div>
         <div class="hero-content">
             <div class="hero-image">
-                <img src="{{ asset('studentimg.jpeg') }}" alt="Hero Image">
+                <img src="{{ asset('studentimg.jpeg') }}" alt="{{ $isRTL ? 'طالب يتعلم عبر حصص خصوصية أونلاين مع إنسكولا' : 'Student learning with Inskola online private lessons' }}">
             </div>
             <div class="hero-text">
                 <div class="hero-logo-container">
-                    <img src="{{ asset('600-200_pp_gr_page-0001-removebg-preview.png') }}" alt="Inskola Logo">
+                    <img src="{{ asset('600-200_pp_gr_page-0001-removebg-preview.png') }}" alt="{{ $isRTL ? 'إنسكولا' : 'Inskola' }}">
                 </div>
                 <h1>{{ __('messages.hero.title') }}</h1>
                 <h2>{{ __('messages.hero.subtitle') }}</h2>
@@ -2438,7 +2497,7 @@
             <div class="footer-section">
                 <div class="footer-logo">
                     <a href="#home">
-                        <img src="{{ asset('600-200_pp_wh_page-0001-removebg-preview (2).png') }}" alt="Inskola Logo">
+                        <img src="{{ asset('600-200_pp_wh_page-0001-removebg-preview (2).png') }}" alt="{{ $isRTL ? 'إنسكولا' : 'Inskola' }}">
                     </a>
                 </div>
                 <p>{{ __('messages.footer.description') }}</p>
@@ -2448,6 +2507,7 @@
                 <a href="#about">{{ __('messages.nav.about') }}</a>
                 <a href="#subjects">{{ __('messages.nav.subjects') }}</a>
                 <a href="#pricing">{{ __('messages.nav.pricing') }}</a>
+                <a href="{{ route('blog.index') }}">{{ __('messages.nav.blog') }}</a>
                 <a href="#contact">{{ __('messages.nav.contact') }}</a>
             </div>
             <div class="footer-section">

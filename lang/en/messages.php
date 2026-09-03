@@ -7,8 +7,43 @@ return [
         'about' => 'Why Inskola?',
         'pricing' => 'Pricing',
         'contact' => 'Contact',
+        'blog' => 'Articles',
         'login' => 'Login',
         'register' => 'Book Now',
+    ],
+    'blog' => [
+        'title' => 'Inskola Education Articles',
+        'subtitle' => 'Guides and tips for parents about private tutoring and learning in Saudi Arabia',
+        'read_more' => 'Read more',
+        'min_read' => 'min read',
+        'related' => 'Related articles',
+        'empty_title' => 'No published articles yet',
+        'empty_text' => 'Check back soon for new articles about tutoring and education.',
+        'cta_text' => 'Want an online private lesson aligned with the Saudi curriculum?',
+        'cta_button' => 'Book a lesson now',
+        'index_seo_title' => 'Education Articles | Online Private Tutoring in Saudi Arabia | Inskola',
+        'index_seo_description' => 'Read Inskola articles about online private tutoring, choosing a teacher, and improving student results with the Saudi Ministry curriculum.',
+        'index_seo_keywords' => 'education articles, online private tutoring, Saudi private teacher, parent tips, Inskola',
+    ],
+    'seo' => [
+        'faq' => [
+            [
+                'question' => 'What is Inskola?',
+                'answer' => 'Inskola is an online private tutoring platform for elementary and intermediate students aligned with the Saudi Ministry of Education curriculum.',
+            ],
+            [
+                'question' => 'Are lessons live with a teacher?',
+                'answer' => 'Yes. Lessons are live online with qualified teachers, including practice and follow-up for the student.',
+            ],
+            [
+                'question' => 'Which subjects are available?',
+                'answer' => 'We cover subjects such as Math, Arabic, English, Science, Social Studies, and Quran.',
+            ],
+            [
+                'question' => 'How much does a lesson cost?',
+                'answer' => 'Each lesson costs 30 SAR and includes live teaching, practice, and follow-up.',
+            ],
+        ],
     ],
     'hero' => [
         'title' => 'Online Private Lessons',

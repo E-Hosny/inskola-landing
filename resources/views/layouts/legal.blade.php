@@ -7,7 +7,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>@yield('title') - إنسكولا</title>
+    @php
+        $pageTitle = trim($__env->yieldContent('title'));
+        $seoTitle = ($pageTitle ? $pageTitle . ' - ' : '') . config('seo.site_name.' . $locale);
+        $seoDescription = trim($__env->yieldContent('seo_description')) ?: config('seo.default_description.' . $locale);
+        $seoKeywords = config('seo.default_keywords.' . $locale);
+        $seoCanonical = url()->current();
+        $seoType = 'website';
+        $seoRobots = 'index, follow';
+        $seoJsonLd = [
+            [
+                '@context' => 'https://schema.org',
+                '@type' => 'WebPage',
+                'name' => $seoTitle,
+                'description' => $seoDescription,
+                'url' => $seoCanonical,
+                'isPartOf' => [
+                    '@type' => 'WebSite',
+                    'name' => config('seo.site_name.' . $locale),
+                    'url' => route('home'),
+                ],
+            ],
+        ];
+    @endphp
+    @include('partials.seo')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -266,6 +289,7 @@
                 <img src="{{ asset('200-600 out icon gr -- EH.png') }}" alt="Inskola Logo">
             </a>
             <div class="nav-actions">
+                <a href="{{ route('blog.index') }}" style="text-decoration:none;color:var(--primary-dark);font-weight:700;font-size:0.82rem;">{{ __('messages.nav.blog') }}</a>
                 <div class="language-switcher">
                     <a href="{{ route('language.switch', 'ar') }}" class="{{ $locale === 'ar' ? 'active' : '' }}">العربية</a>
                     <a href="{{ route('language.switch', 'en') }}" class="{{ $locale === 'en' ? 'active' : '' }}">English</a>
@@ -291,7 +315,11 @@
     </main>
 
     <footer>
-        <p>{{ __('messages.footer.copyright') }}</p>
+        <p>
+            <a href="{{ route('blog.index') }}" style="color:var(--primary-dark);text-decoration:none;font-weight:600;margin:0 0.5rem;">{{ __('messages.nav.blog') }}</a>
+            ·
+            {{ __('messages.footer.copyright') }}
+        </p>
     </footer>
 
     <a href="https://wa.me/966554966258" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="{{ __('messages.whatsapp_float.label') }}">

@@ -1,6 +1,7 @@
 @extends('layouts.legal')
 
 @section('title', __('messages.refund_page.title'))
+@section('seo_description', __('messages.refund_page.subtitle'))
 @section('page_title', __('messages.refund_page.title'))
 @section('page_subtitle', __('messages.refund_page.subtitle'))
 

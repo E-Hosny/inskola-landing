@@ -333,6 +333,11 @@
             </form>
         </div>
 
+        <div style="display:flex;gap:0.6rem;margin-bottom:1rem;flex-wrap:wrap;">
+            <a href="{{ route('admin.contacts') }}" style="text-decoration:none;padding:0.55rem 1rem;border-radius:999px;font-weight:700;font-size:0.85rem;background:var(--primary-color);color:#fff;">{{ $isRTL ? 'الطلبات' : 'Contacts' }}</a>
+            <a href="{{ route('admin.articles.index') }}" style="text-decoration:none;padding:0.55rem 1rem;border-radius:999px;font-weight:700;font-size:0.85rem;background:rgba(24,181,150,0.08);color:var(--primary-dark);border:1px solid rgba(24,181,150,0.18);">{{ $isRTL ? 'المقالات' : 'Articles' }}</a>
+        </div>
+
         <div class="admin-header">
             <h1>{{ $isRTL ? 'لوحة التحكم - الطلبات' : 'Admin Dashboard - Contacts' }}</h1>
             <p>{{ $isRTL ? 'عرض وإدارة جميع طلبات التواصل' : 'View and manage all contact requests' }}</p>
