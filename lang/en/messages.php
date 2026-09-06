@@ -41,7 +41,7 @@ return [
             ],
             [
                 'question' => 'How much does a lesson cost?',
-                'answer' => 'Each lesson costs 30 SAR and includes live teaching, practice, and follow-up.',
+                'answer' => 'Each lesson costs 40 SAR and includes live teaching, practice, and follow-up.',
             ],
         ],
     ],
@@ -93,7 +93,7 @@ return [
     'pricing' => [
         'title' => 'Pricing',
         'subtitle' => 'Simple and transparent pricing',
-        'amount' => '30',
+        'amount' => '40',
         'currency' => 'SAR',
         'unit' => 'per lesson',
         'note' => 'A live online lesson with a specialized teacher',
