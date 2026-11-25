@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Schema;
 
 class SitemapController extends Controller
 {
@@ -42,15 +43,26 @@ class SitemapController extends Controller
             ],
         ];
 
-        $articles = Article::published()->ordered()->get(['slug', 'updated_at', 'published_at']);
-
-        foreach ($articles as $article) {
+        foreach (array_keys(config('seo_pages', [])) as $slug) {
             $urls[] = [
-                'loc' => route('blog.show', $article->slug),
-                'lastmod' => optional($article->updated_at ?? $article->published_at)->toAtomString(),
-                'changefreq' => 'monthly',
-                'priority' => '0.8',
+                'loc' => route('seo.show', $slug),
+                'lastmod' => now()->toAtomString(),
+                'changefreq' => 'weekly',
+                'priority' => '0.85',
             ];
+        }
+
+        if (Schema::hasTable('articles')) {
+            $articles = Article::published()->ordered()->get(['slug', 'updated_at', 'published_at']);
+
+            foreach ($articles as $article) {
+                $urls[] = [
+                    'loc' => route('blog.show', $article->slug),
+                    'lastmod' => optional($article->updated_at ?? $article->published_at)->toAtomString(),
+                    'changefreq' => 'monthly',
+                    'priority' => '0.8',
+                ];
+            }
         }
 
         $xml = view('sitemap', compact('urls'))->render();

@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\RobotsController;
+use App\Http\Controllers\SeoLandingController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -18,8 +19,11 @@ Route::get('/language/{locale}', [HomeController::class, 'switchLanguage'])->nam
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
+Route::get('/tutoring/{slug}', [SeoLandingController::class, 'show'])->name('seo.show');
+
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots');
+
 
 // Admin Routes
 Route::prefix('admin')->group(function () {

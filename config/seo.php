@@ -8,18 +8,18 @@ return [
     ],
 
     'default_title' => [
-        'ar' => 'إنسكولا | حصص خصوصية أونلاين وفق منهج وزارة التعليم السعودية',
-        'en' => 'Inskola | Online Private Lessons Aligned with the Saudi Curriculum',
+        'ar' => 'إنسكولا | حصص خصوصية أونلاين لأولياء الأمور وفق منهج وزارة التعليم السعودية',
+        'en' => 'Inskola | Online Private Lessons for Saudi Parents | Ministry Curriculum',
     ],
 
     'default_description' => [
-        'ar' => 'إنسكولا منصة حصص خصوصية أونلاين للمرحلة الابتدائية والمتوسطة في السعودية، مع معلمين ومعلمات مؤهلين وفق منهج وزارة التعليم. احجز حصة الآن.',
-        'en' => 'Inskola offers online private lessons for elementary and intermediate students in Saudi Arabia, with qualified teachers aligned with the Ministry of Education curriculum. Book a lesson today.',
+        'ar' => 'إنسكولا حصص خصوصية أونلاين للمرحلة الابتدائية والمتوسطة في السعودية. معلمون ومعلمات وفق منهج وزارة التعليم، حصة مباشرة بـ 40 ريال مع تمارين ومتابعة. احجز الآن.',
+        'en' => 'Inskola offers online private lessons for elementary and intermediate students in Saudi Arabia. Qualified teachers aligned with the Ministry curriculum. Live lesson for 40 SAR. Book today.',
     ],
 
     'default_keywords' => [
-        'ar' => 'حصص خصوصية أونلاين, معلم خصوصي السعودية, دروس خصوصية الرياضيات, منهج وزارة التعليم, حصص ابتدائي أونلاين, حصص متوسط أونلاين, إنسكولا, معلم خصوصي جدة, معلم خصوصي الرياض',
-        'en' => 'online private tutoring Saudi Arabia, private teacher Saudi curriculum, online math lessons, Ministry of Education tutoring, elementary tutoring online, intermediate tutoring, Inskola',
+        'ar' => 'حصص خصوصية أونلاين السعودية, معلم خصوصي ابتدائي, معلم خصوصي متوسط, منهج وزارة التعليم, دروس خصوصية رياضيات, حصص لغتي أونلاين, معلم خصوصي جدة, معلم خصوصي الرياض, إنسكولا',
+        'en' => 'online private tutoring Saudi Arabia, Saudi Ministry curriculum tutor, elementary private teacher, intermediate tutoring online, online math lessons Saudi, Inskola',
     ],
 
     'og_image' => 'studentimg.jpeg',

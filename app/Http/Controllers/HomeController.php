@@ -62,9 +62,12 @@ class HomeController extends Controller
     {
         $validated = $request->validate([
             'name' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:255',
-            'message' => 'nullable|string|max:1000'
+            'phone' => 'required|string|max:255',
+            'message' => 'nullable|string|max:1000',
+        ], [
+            'phone.required' => __('messages.contact.phone_required'),
         ]);
+
 
         Contact::create($validated);
 
